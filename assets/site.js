@@ -205,9 +205,9 @@
   /* ---------- Set initial hidden states (only when GSAP is present) ---------- */
   if(hasGSAP){
     gsap.set('[data-media]', {clipPath:'inset(0% 0% 100% 0%)'});
-    gsap.set('.hero-media .media-inner, .marquee-media .media-inner, .custom-media .media-inner, .sol-bg .media-inner', {scale:1.4});
-    document.querySelectorAll('[data-split]').forEach(function(el){ gsap.set(el._words, {yPercent:135}); });
-    gsap.set('[data-rise]', {y:40, autoAlpha:0, scale:0.96, transformOrigin:'50% 60%'});
+    gsap.set('.hero-media .media-inner, .marquee-media .media-inner, .custom-media .media-inner, .sol-bg .media-inner', {scale:1.12});
+    document.querySelectorAll('[data-split]').forEach(function(el){ gsap.set(el._words, {yPercent:100}); });
+    gsap.set('[data-rise]', {y:24, autoAlpha:0, scale:0.99, transformOrigin:'50% 60%'});
     gsap.set('.sol-divider', {scaleX:0});
   }
 
@@ -216,23 +216,23 @@
     var tl = gsap.timeline();
     var media = section.querySelectorAll('[data-media]');
     media.forEach(function(m,i){
-      tl.to(m, {clipPath:'inset(0% 0% 0% 0%)', duration:0.8, ease:'power3.inOut'}, i*0.05);
+      tl.to(m, {clipPath:'inset(0% 0% 0% 0%)', duration:0.55, ease:'power3.inOut'}, i*0.04);
       var inner = m.querySelector('.media-inner');
       if(inner && gsap.getProperty(inner,'scale') !== 1){
-        tl.to(inner, {scale:1, duration:1.6, ease:'power3.out'}, i*0.05 + 0.05);
+        tl.to(inner, {scale:1, duration:1.0, ease:'power3.out'}, i*0.04 + 0.05);
       }
     });
     section.querySelectorAll('[data-split]').forEach(function(el){
-      tl.to(el._words, {yPercent:0, duration:1.0, stagger:0.05, ease:'power3.out'}, 0.1);
+      tl.to(el._words, {yPercent:0, duration:0.7, stagger:0.04, ease:'power3.out'}, 0.08);
     });
     var rises = section.querySelectorAll('[data-rise]');
     if(rises.length){
-      // fade + rise + scale-pop with a whisper of overshoot — springy, not slidey
-      tl.to(rises, {y:0, autoAlpha:1, scale:1, duration:0.85, stagger:0.045, ease:'back.out(1.2)'}, 0.15);
+      // fade + rise — calm and quick, no overshoot (more business-like)
+      tl.to(rises, {y:0, autoAlpha:1, scale:1, duration:0.55, stagger:0.04, ease:'power3.out'}, 0.12);
     }
     var dividers = section.querySelectorAll('.sol-divider');
     if(dividers.length){
-      tl.to(dividers, {scaleX:1, duration:0.8, ease:'power3.inOut'}, 0.2);
+      tl.to(dividers, {scaleX:1, duration:0.6, ease:'power3.inOut'}, 0.18);
     }
     // Divider line draw-ins (info rows, FAQ rows) — staggered scaleX via CSS class
     section.querySelectorAll('.draw-line').forEach(function(el, i){

@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Printopack Admin — LinkedIn-Assisted News Import</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@300;400;500;600;700&family=IBM+Plex+Sans+Arabic:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --cream:rgb(255,253,245); --sand:rgb(247,244,233); --tan:rgb(227,222,206);
+  --navy:rgb(14,32,66); --ink:rgb(29,29,27); --line:rgba(29,29,27,.14);
+  --amber:rgb(255,174,42); --amber-deep:rgb(200,120,0); --blue:rgb(30,82,160);
+  --ok:rgb(22,120,74); --err:rgb(178,52,40); --ease:cubic-bezier(.22,1,.36,1);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Hanken Grotesk',sans-serif;background:var(--sand);color:var(--ink);line-height:1.4;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1280px;margin:0 auto;padding:28px 32px 90px}
+.topbar{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:16px 22px;background:var(--navy);color:var(--cream);border-radius:14px}
+.topbar .brand{display:flex;align-items:center;gap:12px;font-weight:600;letter-spacing:.02em}
+.topbar .brand .dot{width:10px;height:10px;border-radius:50%;background:var(--amber)}
+.topbar .who{display:flex;align-items:center;gap:10px;font-size:13px;opacity:.85}
+.topbar .who .av{width:30px;height:30px;border-radius:50%;background:linear-gradient(135deg,var(--amber),var(--amber-deep));display:grid;place-items:center;font-weight:700;color:var(--navy);font-size:13px}
+.crumb{font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:rgba(29,29,27,.5);margin:26px 2px 6px;font-weight:600}
+h1{font-size:26px;font-weight:600;margin-bottom:4px}
+.sub{color:rgba(29,29,27,.6);font-size:14.5px;max-width:660px}
+.grid{display:grid;grid-template-columns:1fr 400px;gap:24px;margin-top:26px}
+@media(max-width:920px){.grid{grid-template-columns:1fr}}
+.card{background:var(--cream);border:1px solid var(--line);border-radius:16px;padding:22px 22px 24px}
+.card h2{font-size:13px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--navy);margin-bottom:14px;display:flex;align-items:center;gap:8px}
+.card h2 .n{width:22px;height:22px;border-radius:50%;background:var(--navy);color:var(--cream);display:grid;place-items:center;font-size:12px;font-weight:700}
+.import-row{display:flex;gap:10px}
+.import-row input{flex:1;padding:13px 15px;border:1.5px solid var(--line);border-radius:11px;font:inherit;font-size:14.5px;background:#fff;color:var(--ink)}
+.import-row input:focus{outline:none;border-color:var(--blue)}
+.btn{border:none;border-radius:11px;font:inherit;font-weight:600;cursor:pointer;padding:13px 20px;font-size:14.5px;transition:transform .4s var(--ease),background .3s,opacity .3s}
+.btn:active{transform:scale(.97)}
+.btn-primary{background:var(--navy);color:var(--cream)}
+.btn-primary:hover{background:var(--blue)}
+.btn-ghost{background:transparent;color:var(--ink);border:1.5px solid var(--line)}
+.btn-ghost:hover{border-color:var(--ink)}
+.btn-ok{background:var(--ok);color:#fff}
+.btn-ok:hover{filter:brightness(1.08)}
+.btn:disabled{opacity:.45;cursor:not-allowed}
+.hint{font-size:12.5px;color:rgba(29,29,27,.5);margin-top:9px}
+.samples{margin-top:10px;display:flex;flex-wrap:wrap;gap:7px;align-items:center}
+.samples span{font-size:12px;color:rgba(29,29,27,.5)}
+.chip{font-size:12px;padding:5px 11px;border-radius:99px;background:var(--sand);border:1px solid var(--line);cursor:pointer;transition:background .25s}
+.chip:hover{background:var(--tan)}
+.status{display:none;align-items:center;gap:11px;margin-top:16px;padding:12px 15px;background:var(--sand);border-radius:11px;font-size:14px}
+.status.show{display:flex}
+.spinner{width:17px;height:17px;border:2.5px solid var(--tan);border-top-color:var(--navy);border-radius:50%;animation:spin .7s linear infinite;flex:none}
+@keyframes spin{to{transform:rotate(360deg)}}
+.status.done{background:rgba(22,120,74,.1)}
+.status.done .spinner,.status.err .spinner{display:none}
+.status.err{background:rgba(178,52,40,.1);color:var(--err)}
+.check{display:none;width:18px;height:18px;border-radius:50%;background:var(--ok);color:#fff;place-items:center;font-size:11px;font-weight:700;flex:none}
+.status.done .check{display:grid}
+.editor{display:none;margin-top:22px;border-top:1px solid var(--line);padding-top:22px}
+.editor.show{display:block;animation:rise .4s var(--ease)}
+@keyframes rise{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.field{margin-bottom:16px}
+.field label{display:block;font-size:12px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;color:rgba(29,29,27,.55);margin-bottom:6px}
+.field .flag{font-size:11px;font-weight:600;color:var(--amber-deep);text-transform:none;letter-spacing:0;margin-left:6px}
+.field input,.field textarea,.field select{width:100%;padding:11px 13px;border:1.5px solid var(--line);border-radius:10px;font:inherit;font-size:14.5px;background:#fff;color:var(--ink);resize:vertical}
+.field input:focus,.field textarea:focus,.field select:focus{outline:none;border-color:var(--blue)}
+.field textarea{min-height:88px;line-height:1.55}
+textarea[dir="rtl"],input[dir="rtl"]{font-family:'IBM Plex Sans Arabic','Hanken Grotesk',sans-serif;text-align:right}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media(max-width:520px){.two{grid-template-columns:1fr}}
+.imgslot{position:relative;border-radius:12px;overflow:hidden;border:1.5px solid var(--line);background:var(--sand);aspect-ratio:1200/627;display:grid;place-items:center}
+.imgslot img{width:100%;height:100%;object-fit:cover;display:block}
+.imgslot .ph{color:rgba(29,29,27,.4);font-size:13px}
+.imgslot .over{position:absolute;inset:0;background:linear-gradient(to top,rgba(14,32,66,.55),transparent 55%);display:flex;align-items:flex-end;justify-content:space-between;padding:12px 14px;opacity:0;transition:opacity .3s}
+.imgslot:hover .over{opacity:1}
+.imgslot .sizeTag{font-size:11px;color:var(--cream);background:rgba(14,32,66,.6);padding:4px 9px;border-radius:99px;backdrop-filter:blur(4px)}
+.imgslot .replace{font-size:12.5px;font-weight:600;color:var(--navy);background:var(--cream);padding:7px 13px;border-radius:99px;cursor:pointer}
+.editor-actions{display:flex;gap:10px;margin-top:22px;align-items:center;flex-wrap:wrap}
+.saved-note{font-size:12.5px;color:rgba(29,29,27,.5);margin-left:auto}
+.preview-wrap{position:sticky;top:20px}
+.pv-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}
+.pv-head h2{margin:0}
+.langtoggle{display:flex;background:var(--sand);border:1px solid var(--line);border-radius:99px;padding:3px}
+.langtoggle button{border:none;background:transparent;font:inherit;font-size:12.5px;font-weight:600;padding:5px 13px;border-radius:99px;cursor:pointer;color:rgba(29,29,27,.55)}
+.langtoggle button.on{background:var(--navy);color:var(--cream)}
+.news-card{position:relative;display:flex;flex-direction:column;border-radius:16px;overflow:hidden;background:#fff;border:1px solid var(--line);box-shadow:0 12px 30px rgba(29,29,27,.06)}
+.nc-img{aspect-ratio:1200/627;overflow:hidden;background:var(--tan)}
+.nc-img img{width:100%;height:100%;object-fit:cover}
+.nc-body{padding:18px 18px 20px;display:flex;flex-direction:column;gap:8px}
+.nc-cat{font-size:11px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--amber-deep)}
+.nc-body h3{font-size:18px;font-weight:600;line-height:1.32}
+.nc-excerpt{font-size:14px;color:rgba(29,29,27,.66);line-height:1.5}
+.nc-body time{font-size:12.5px;color:rgba(29,29,27,.45);margin-top:2px}
+.news-card[dir="rtl"] .nc-body{text-align:right}
+.news-card[dir="rtl"] .nc-body h3,.news-card[dir="rtl"] .nc-excerpt{font-family:'IBM Plex Sans Arabic','Hanken Grotesk',sans-serif}
+.pv-empty{border:2px dashed var(--line);border-radius:16px;padding:40px 22px;text-align:center;color:rgba(29,29,27,.4);font-size:14px}
+.published{margin-top:34px}
+.published .ph-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px}
+.published h2{font-size:13px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--navy)}
+.feed{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+@media(max-width:920px){.feed{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:560px){.feed{grid-template-columns:1fr}}
+.card-tools{position:absolute;top:10px;right:10px;display:flex;gap:6px;opacity:0;transition:opacity .25s}
+.news-card:hover .card-tools{opacity:1}
+.card-tools button{border:none;background:rgba(255,253,245,.95);border:1px solid var(--line);border-radius:8px;font:inherit;font-size:12px;font-weight:600;padding:5px 10px;cursor:pointer}
+.card-tools .del:hover{background:var(--err);color:#fff;border-color:var(--err)}
+.card-tools .ed:hover{background:var(--navy);color:#fff;border-color:var(--navy)}
+.toast{position:fixed;bottom:26px;left:50%;transform:translateX(-50%) translateY(20px);background:var(--navy);color:var(--cream);padding:13px 22px;border-radius:12px;font-size:14px;font-weight:500;opacity:0;pointer-events:none;transition:opacity .35s,transform .35s var(--ease);z-index:50;display:flex;gap:9px;align-items:center}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+.toast.err{background:var(--err)}
+.info-note{margin-top:14px;font-size:12.5px;color:rgba(29,29,27,.55);background:rgba(30,82,160,.08);border:1px solid rgba(30,82,160,.28);padding:10px 14px;border-radius:10px}
+.info-note b{color:var(--blue)}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="topbar">
+    <div class="brand"><span class="dot"></span>Printopack&nbsp;<span style="opacity:.6;font-weight:400">/ Admin</span></div>
+    <div class="who"><span>Creative Manager</span><span class="av">CM</span></div>
+  </div>
+
+  <div class="crumb">News · Add post</div>
+  <h1>LinkedIn-assisted import</h1>
+  <p class="sub">Paste a link — the page's text and image are fetched into an editable draft. Polish the wording, refine the Arabic, adjust the image, then publish. Nothing goes live until you press Publish. Published posts are saved and survive a page reload.</p>
+
+  <div class="grid">
+    <div>
+      <div class="card">
+        <h2><span class="n">1</span> Import from a link</h2>
+        <div class="import-row">
+          <input id="url" type="text" placeholder="Paste a LinkedIn post URL (or any article link)…" autocomplete="off">
+          <button class="btn btn-primary" id="importBtn">Import</button>
+        </div>
+        <div class="hint">Real fetch: paste any public article/blog URL and it pulls the title, description &amp; image. Or load a bundled sample below.</div>
+        <div class="samples">
+          <span>Samples:</span>
+          <button class="chip" data-key="sustain">Sustainable films</button>
+          <button class="chip" data-key="award">ISO certification</button>
+          <button class="chip" data-key="expo">Gulfood Manufacturing</button>
+        </div>
+
+        <div class="status" id="status">
+          <span class="spinner"></span><span class="check">✓</span>
+          <span id="statusText">Fetching…</span>
+        </div>
+
+        <div class="editor" id="editor">
+          <h2 style="margin-bottom:16px"><span class="n">2</span> Edit &amp; translate</h2>
+          <div class="field">
+            <label>Image <span class="flag" id="imgFlag">pulled from post</span></label>
+            <div class="imgslot">
+              <img id="edImg" src="" alt="" style="display:none">
+              <span class="ph" id="edImgPh">No image — use “Replace image” to upload</span>
+              <div class="over">
+                <span class="sizeTag" id="sizeTag">recommended 1200 × 627</span>
+                <span class="replace" id="replaceBtn">Replace image ↑</span>
+              </div>
+            </div>
+            <input type="file" id="imgFile" accept="image/*" hidden>
+          </div>
+
+          <div class="two">
+            <div class="field"><label>Category</label>
+              <select id="edCat">
+                <option>Company News</option><option>Sustainability</option>
+                <option>Certifications</option><option>Events</option><option>Products</option>
+              </select>
+            </div>
+            <div class="field"><label>Date</label><input id="edDate" type="date"></div>
+          </div>
+
+          <div class="field"><label>Title — English</label><input id="edTitleEn" type="text"></div>
+          <div class="field"><label>Body — English <span class="flag">from the post</span></label><textarea id="edBodyEn"></textarea></div>
+          <div class="field"><label>Title — Arabic <span class="flag">review before publishing</span></label><input id="edTitleAr" type="text" dir="rtl"></div>
+          <div class="field"><label>Body — Arabic <span class="flag">review before publishing</span></label><textarea id="edBodyAr" dir="rtl"></textarea></div>
+
+          <div class="editor-actions">
+            <button class="btn btn-ok" id="publishBtn">Publish to website</button>
+            <button class="btn btn-ghost" id="discardBtn">Discard</button>
+            <span class="saved-note" id="savedNote">Draft — not yet live</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="info-note">
+        <b>How the fetch works:</b> the tool reads the pasted page's Open-Graph metadata (title/description/image) through a public read-only proxy. Public articles import cleanly. LinkedIn shows posts behind a login wall, so a LinkedIn URL may return limited text — in the live build this is handled server-side with the page's own credentials; here you can always type or paste the content into the same editor. Every field stays editable either way.
+      </div>
+    </div>
+
+    <div class="preview-wrap">
+      <div class="card">
+        <div class="pv-head">
+          <h2>Live preview</h2>
+          <div class="langtoggle">
+            <button class="on" data-lang="en" id="pvEn">EN</button>
+            <button data-lang="ar" id="pvAr">ع</button>
+          </div>
+        </div>
+        <div id="pvHost"><div class="pv-empty">Your news card appears here as you edit.</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="published">
+    <div class="ph-head">
+      <h2>Published on the website</h2>
+      <button class="btn btn-ghost" id="clearAll" style="padding:8px 14px;font-size:13px">Clear all</button>
+    </div>
+    <div class="feed" id="feed"></div>
+  </div>
+</div>
+
+<div class="toast" id="toast"><span class="check" style="display:grid;width:18px;height:18px;border-radius:50%;background:var(--ok);color:#fff;place-items:center;font-size:11px;font-weight:700">✓</span><span id="toastText">Published</span></div>
+
+<script>
+var SAMPLES = {
+  sustain:{cat:"Sustainability",date:"2026-06-18",img:"https://images.unsplash.com/photo-1605600659908-0ef719419d41?q=80&w=1200&h=627&fit=crop",
+    titleEn:"Printopack expands its recyclable mono-material film range",
+    bodyEn:"We are proud to introduce a new generation of fully recyclable mono-material laminates, engineered to keep the same barrier performance our customers rely on while cutting packaging footprint. Developed in Jeddah, produced for the region.",
+    titleAr:"برينتوباك توسّع تشكيلتها من الأفلام أحادية المادة القابلة للتدوير",
+    bodyAr:"يسعدنا أن نقدّم جيلاً جديداً من الرقائق أحادية المادة القابلة للتدوير بالكامل، مصمّمة للحفاظ على أداء الحاجز نفسه الذي يعتمد عليه عملاؤنا مع خفض الأثر البيئي للتغليف. طُوّرت في جدة، وأُنتجت للمنطقة."},
+  award:{cat:"Certifications",date:"2026-05-30",img:"https://images.unsplash.com/photo-1521737604893-d14cc237f11d?q=80&w=1200&h=627&fit=crop",
+    titleEn:"Printopack renews its ISO 22000 food-safety certification",
+    bodyEn:"Following a full external audit, Printopack has renewed its ISO 22000 certification for food-contact packaging. The result reflects the discipline of our production teams and our long-standing commitment to safety and consistency.",
+    titleAr:"برينتوباك تجدّد شهادة الأيزو 22000 لسلامة الغذاء",
+    bodyAr:"عقب تدقيق خارجي شامل، جدّدت برينتوباك شهادة الأيزو 22000 الخاصة بالتغليف الملامس للأغذية. تعكس هذه النتيجة انضباط فرق الإنتاج لدينا والتزامنا الراسخ بالسلامة والاتساق."},
+  expo:{cat:"Events",date:"2026-07-02",img:"https://images.unsplash.com/photo-1540575467063-178a50c2df87?q=80&w=1200&h=627&fit=crop",
+    titleEn:"Meet Printopack at Gulfood Manufacturing 2026",
+    bodyEn:"Our team will be exhibiting at Gulfood Manufacturing this year, showcasing our latest printed pouches, high-barrier structures and custom packaging capabilities. Visit our stand to talk print, materials and lead times with our engineers.",
+    titleAr:"لقاؤنا بكم في معرض جلفود للتصنيع 2026",
+    bodyAr:"سيشارك فريقنا هذا العام في معرض جلفود للتصنيع، مستعرضاً أحدث أكياسنا المطبوعة وهياكلنا عالية الحاجز وقدراتنا في التغليف المخصّص. تفضّلوا بزيارة جناحنا للحديث عن الطباعة والمواد ومدد التسليم مع مهندسينا."}
+};
+var STORE_KEY='pp-news-demo-v1';
+var $=function(id){return document.getElementById(id);};
+var pvLang='en', hasDraft=false, editingId=null;
+function esc(s){var d=document.createElement('div');d.textContent=s==null?'':String(s);return d.innerHTML;}
+function load(){try{return JSON.parse(localStorage.getItem(STORE_KEY))||[];}catch(e){return[];}}
+function save(a){try{localStorage.setItem(STORE_KEY,JSON.stringify(a));}catch(e){}}
+
+function setImg(src){
+  if(src){$('edImg').src=src;$('edImg').style.display='';$('edImgPh').style.display='none';}
+  else{$('edImg').src='';$('edImg').style.display='none';$('edImgPh').style.display='';}
+}
+function fillEditor(d){
+  setImg(d.img||'');
+  $('edCat').value=d.cat||'Company News';
+  $('edDate').value=d.date||new Date().toISOString().slice(0,10);
+  $('edTitleEn').value=d.titleEn||'';
+  $('edBodyEn').value=d.bodyEn||'';
+  $('edTitleAr').value=d.titleAr||'';
+  $('edBodyAr').value=d.bodyAr||'';
+  hasDraft=true; renderPreview();
+  $('editor').classList.add('show');
+  $('editor').scrollIntoView({behavior:'smooth',block:'nearest'});
+}
+
+/* ---- REAL fetch via r.jina.ai reader: returns title / description / OG image ---- */
+function firstVal(o){ if(!o)return ''; var k=Object.keys(o); return k.length?o[k[0]]:''; }
+function fetchLink(url){
+  var status=$('status');
+  status.className='status show'; $('importBtn').disabled=true;
+  $('statusText').textContent='Fetching the page…';
+  var ctrl=new AbortController(); var to=setTimeout(function(){ctrl.abort();},28000);
+  setTimeout(function(){ if($('importBtn').disabled) $('statusText').textContent='Reading text and image…'; },1200);
+  fetch('https://r.jina.ai/'+url,{headers:{'Accept':'application/json'},signal:ctrl.signal})
+  .then(function(r){return r.json();}).then(function(res){
+    var d=(res&&res.data)||{}, meta=d.metadata||{};
+    var title=meta['og:title']||d.title||'';
+    var desc=meta['og:description']||meta['description']||d.description||'';
+    if(!desc && d.content){ desc=String(d.content).replace(/\s+/g,' ').slice(0,320).trim()+'…'; }
+    var img=meta['og:image']||meta['twitter:image']||firstVal(d.images)||'';
+    if(!title && !desc){ throw new Error('no-content'); }
+    status.className='status show done';
+    $('statusText').textContent='Imported — draft ready to edit below.';
+    editingId=null;
+    fillEditor({img:img,cat:'Company News',date:new Date().toISOString().slice(0,10),
+      titleEn:String(title).trim(),bodyEn:String(desc).trim(),titleAr:'',bodyAr:''});
+    $('imgFlag').textContent = img?'pulled from post':'none found — upload one';
+  }).catch(function(){
+    status.className='status show err';
+    $('statusText').textContent='Couldn’t auto-read this link (login wall / blocked / timeout) — start a blank draft and paste the text.';
+    editingId=null;
+    fillEditor({img:'',cat:'Company News',date:new Date().toISOString().slice(0,10),titleEn:'',bodyEn:'',titleAr:'',bodyAr:''});
+    $('imgFlag').textContent='none found — upload one';
+  }).finally(function(){ $('importBtn').disabled=false; clearTimeout(to); });
+}
+
+function loadSample(key){
+  var s=SAMPLES[key]; if(!s)return;
+  var status=$('status'); status.className='status show';
+  $('statusText').textContent='Fetching post from LinkedIn…'; $('importBtn').disabled=true;
+  setTimeout(function(){$('statusText').textContent='Reading text and image…';},600);
+  setTimeout(function(){$('statusText').textContent='Preparing Arabic translation…';},1200);
+  setTimeout(function(){
+    status.className='status show done'; $('statusText').textContent='Imported — draft ready to edit below.';
+    $('importBtn').disabled=false; editingId=null; $('imgFlag').textContent='pulled from post';
+    fillEditor(s);
+  },1800);
+}
+
+function renderPreview(){
+  if(!hasDraft)return;
+  var en=pvLang==='en';
+  var title=en?$('edTitleEn').value:$('edTitleAr').value;
+  var body=en?$('edBodyEn').value:$('edBodyAr').value;
+  var excerpt=String(body||'').slice(0,120)+((body&&body.length>120)?'…':'');
+  var imgHtml=$('edImg').style.display!=='none'&&$('edImg').src?'<div class="nc-img"><img src="'+esc($('edImg').src)+'" alt=""></div>':'';
+  $('pvHost').innerHTML='<article class="news-card"'+(en?'':' dir="rtl"')+'>'+imgHtml+
+    '<div class="nc-body"><span class="nc-cat">'+esc($('edCat').value)+'</span>'+
+    '<h3>'+esc(title||'Untitled')+'</h3><p class="nc-excerpt">'+esc(excerpt)+'</p>'+
+    '<time>'+esc($('edDate').value)+'</time></div></article>';
+}
+
+function currentDraft(){
+  return {id:editingId||('n'+Date.now()),cat:$('edCat').value,date:$('edDate').value,
+    img:($('edImg').style.display!=='none'?$('edImg').src:''),
+    titleEn:$('edTitleEn').value,bodyEn:$('edBodyEn').value,
+    titleAr:$('edTitleAr').value,bodyAr:$('edBodyAr').value};
+}
+function publish(){
+  if(!hasDraft)return;
+  if(!$('edTitleEn').value.trim()){toast('Add an English title first','err');return;}
+  var arr=load(); var d=currentDraft();
+  var i=arr.findIndex(function(x){return x.id===d.id;});
+  if(i>-1){arr[i]=d;toast('Post updated');}else{arr.unshift(d);toast('Published — EN + AR');}
+  save(arr); renderFeed(); resetEditor();
+}
+function renderFeed(){
+  var arr=load(), feed=$('feed');
+  if(!arr.length){feed.innerHTML='<div class="pv-empty" style="grid-column:1/-1">Nothing published yet — import a post, edit it, and hit Publish.</div>';return;}
+  feed.innerHTML=arr.map(function(d){
+    var img=d.img?'<div class="nc-img"><img src="'+esc(d.img)+'" alt=""></div>':'';
+    return '<article class="news-card" data-id="'+d.id+'">'+
+      '<div class="card-tools"><button class="ed" data-act="edit">Edit</button><button class="del" data-act="del">Delete</button></div>'+
+      img+'<div class="nc-body"><span class="nc-cat">'+esc(d.cat)+'</span>'+
+      '<h3>'+esc(d.titleEn||'Untitled')+'</h3>'+
+      '<p class="nc-excerpt">'+esc(String(d.bodyEn||'').slice(0,120)+(d.bodyEn&&d.bodyEn.length>120?'…':''))+'</p>'+
+      '<time>'+esc(d.date)+'</time></div></article>';
+  }).join('');
+}
+function resetEditor(){
+  $('editor').classList.remove('show'); $('status').className='status';
+  $('url').value=''; $('pvHost').innerHTML='<div class="pv-empty">Your news card appears here as you edit.</div>';
+  hasDraft=false; editingId=null;
+}
+function toast(msg,type){
+  var t=$('toast'); $('toastText').textContent=msg;
+  t.className='toast show'+(type==='err'?' err':'');
+  clearTimeout(toast._t); toast._t=setTimeout(function(){t.className='toast';},2600);
+}
+
+/* wiring */
+$('importBtn').addEventListener('click',function(){
+  var u=$('url').value.trim(); if(!u){toast('Paste a link first','err');return;}
+  if(!/^https?:\/\//.test(u))u='https://'+u;
+  fetchLink(u);
+});
+$('url').addEventListener('keydown',function(e){if(e.key==='Enter')$('importBtn').click();});
+document.querySelectorAll('.chip').forEach(function(c){
+  c.addEventListener('click',function(){$('url').value='https://www.linkedin.com/posts/printopack_'+c.dataset.key;loadSample(c.dataset.key);});
+});
+['edTitleEn','edBodyEn','edTitleAr','edBodyAr','edCat','edDate'].forEach(function(id){
+  $(id).addEventListener('input',function(){$('savedNote').textContent='Draft — not yet live';renderPreview();});
+});
+$('pvEn').addEventListener('click',function(){pvLang='en';$('pvEn').classList.add('on');$('pvAr').classList.remove('on');renderPreview();});
+$('pvAr').addEventListener('click',function(){pvLang='ar';$('pvAr').classList.add('on');$('pvEn').classList.remove('on');renderPreview();});
+$('replaceBtn').addEventListener('click',function(){$('imgFile').click();});
+$('imgFile').addEventListener('change',function(e){
+  var f=e.target.files[0]; if(!f)return;
+  var rd=new FileReader(); rd.onload=function(){setImg(rd.result);$('imgFlag').textContent='uploaded';renderPreview();toast('Image updated');};
+  rd.readAsDataURL(f);
+});
+$('publishBtn').addEventListener('click',publish);
+$('discardBtn').addEventListener('click',function(){resetEditor();toast('Draft discarded');});
+$('clearAll').addEventListener('click',function(){if(confirm('Remove all published demo posts?')){save([]);renderFeed();toast('Cleared');}});
+$('feed').addEventListener('click',function(e){
+  var b=e.target.closest('button'); if(!b)return;
+  var card=e.target.closest('.news-card'); var id=card&&card.dataset.id; var arr=load();
+  var d=arr.find(function(x){return x.id===id;}); if(!d)return;
+  if(b.dataset.act==='del'){save(arr.filter(function(x){return x.id!==id;}));renderFeed();toast('Post deleted');}
+  else{editingId=id;$('status').className='status';fillEditor(d);toast('Loaded into editor');}
+});
+renderFeed();
+</script>
+</body>
+</html>

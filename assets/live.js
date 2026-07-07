@@ -47,11 +47,13 @@
       var items = (((d || {}).data || {}).data || []).filter(function(c){ return c.is_active; });
       if(!items.length) return;
       items.sort(function(a, b){ return (a.category_sort || 99) - (b.category_sort || 99); });
-      var enq = LANG === 'ar' ? 'استفسر الآن ←' : 'Enquire →';
+      var enq = LANG === 'ar' ? 'عرض ←' : 'View →';
       cg.innerHTML = items.map(function(c){
-        return '<a class="cat-card" href="contact.html">' +
-          '<span class="ci"><img src="' + abs(c.category_image) + '" alt="' + esc(cleanName(c.category_name)) + '" loading="lazy"></span>' +
-          '<h3>' + esc(cleanName(c.category_name)) + '</h3><span>' + enq + '</span></a>';
+        var nm = cleanName(c.category_name);
+        var href = 'product.html?cat=' + encodeURIComponent(nm) + '&img=' + encodeURIComponent(abs(c.category_image));
+        return '<a class="cat-card" href="' + href + '">' +
+          '<span class="ci"><img src="' + abs(c.category_image) + '" alt="' + esc(nm) + '" loading="lazy"></span>' +
+          '<h3>' + esc(nm) + '</h3><span>' + enq + '</span></a>';
       }).join('');
     }).catch(function(){});
   }

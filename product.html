@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Products — Printopack</title>
+<meta name="description" content="Printopack packaging by category.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@300;400;600&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"></script>
+<link rel="canonical" href="https://www.printopack.com.sa/product.html">
+<meta name="theme-color" content="#0e2042">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+<link rel="manifest" href="manifest.webmanifest">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Printopack">
+<meta property="og:title" content="Products — Printopack">
+<meta property="og:image" content="https://www.printopack.com.sa/assets/hero.jpg">
+<link rel="stylesheet" href="assets/site.css?v=1783419816">
+<link rel="stylesheet" href="assets/pages.css?v=1783419816">
+<style>
+.prod-hero-in{display:flex;align-items:center;gap:40px;justify-content:space-between;flex-wrap:wrap}
+.prod-hero-copy{flex:1;min-width:280px}
+.prod-hero-img{flex:0 0 42%;max-width:480px;border-radius:20px;overflow:hidden;background:var(--sand);aspect-ratio:16/10;box-shadow:0 20px 50px rgba(14,32,66,.12)}
+.prod-hero-img img{width:100%;height:100%;object-fit:cover;display:block}
+.prod-hero-img.empty{display:none}
+.prod-search{display:flex;align-items:center;gap:12px;background:#fff;border:1px solid var(--line);border-radius:999px;padding:8px 8px 8px 22px;max-width:720px;margin:0 auto 34px;box-shadow:0 10px 30px rgba(14,32,66,.06)}
+.prod-search .ps-ico{width:20px;height:20px;flex:none;opacity:.5}
+.prod-search input{flex:1;border:none;outline:none;font:inherit;font-size:16px;background:transparent;color:var(--ink);padding:10px 0}
+.prod-search button{flex:none;border-radius:999px;padding:13px 30px}
+.brand-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:22px}
+.brand-card{display:flex;flex-direction:column;background:#fff;border:1px solid var(--line);border-radius:16px;overflow:hidden;transition:transform .4s var(--ease),box-shadow .4s var(--ease)}
+.brand-card:hover{transform:translateY(-4px);box-shadow:0 16px 40px rgba(14,32,66,.1)}
+.brand-card .bc-img{aspect-ratio:4/3;overflow:hidden;background:var(--sand)}
+.brand-card .bc-img img{width:100%;height:100%;object-fit:cover}
+.brand-card .bc-body{padding:16px 18px 20px}
+.brand-card h3{font-size:18px;font-weight:600;margin-bottom:5px;color:var(--ink)}
+.brand-card p{font-size:14px;color:rgba(29,29,27,.62);line-height:1.5}
+.brand-empty{text-align:center;color:rgba(29,29,27,.5);font-size:15px;padding:48px 0}
+@media(max-width:640px){.prod-search{padding-left:16px}.prod-search button{padding:12px 20px}}
+</style>
+</head>
+<body>
+<a class="skip-link" href="#top">Skip to content</a>
+<div class="grain"></div>
+<div class="scroll-progress" id="scrollProgress"></div>
+<div class="cursor-dot" id="cursorDot"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+<header>
+  <div class="nav">
+    <div class="nav-cluster">
+      <div class="nav-account">
+        <a href="https://printopack.azurewebsites.net/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 3.6-6.5 8-6.5s8 2.5 8 6.5"/></svg>Customer Login</a>
+        <a href="https://printopack.azurewebsites.net/" target="_blank" rel="noopener" class="admin-login"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 3.6-6.5 8-6.5s8 2.5 8 6.5"/></svg>Admin</a>
+      </div>
+      <a href="index.html" class="brand"><img src="assets/logo_nav.png" alt="Printopack" class="brand-logo"></a>
+    </div>
+    <nav class="nav-links"><a href="index.html">Home</a><a href="categories.html" class="on">Products</a><a href="news.html">News</a><a href="about.html">About</a><a href="gallery.html">Gallery</a><a href="contact.html">Contact</a></nav>
+    <a href="categories.html" class="btn brand">All Products</a>
+  </div>
+</header>
+<main id="top">
+<section class="section page-hero" data-reveal>
+  <div class="wrap prod-hero-in">
+    <div class="prod-hero-copy">
+      <span class="ph-kicker" id="crumb">Products</span>
+      <h1 id="catTitle">Category</h1>
+      <p class="ph-sub" id="catSub">Brands and partners we print and package for in this category.</p>
+    </div>
+    <div class="prod-hero-img empty" id="heroWrap"><img id="heroImg" src="" alt=""></div>
+  </div>
+</section>
+
+<section class="section page-body">
+  <div class="wrap">
+    <div class="prod-search">
+      <svg class="ps-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+      <input id="q" type="text" placeholder="Search brands in this category…" autocomplete="off">
+      <button id="searchBtn" class="btn brand" type="button">Search</button>
+    </div>
+    <div class="brand-grid" id="brandGrid"></div>
+    <p class="brand-empty" id="empty" style="display:none">No products found for this search.</p>
+  </div>
+</section>
+</main>
+<footer id="contact">
+  <div class="footer-in">
+    <div class="footer-top">
+      <h2>Set the standard for packaging in your industry.</h2>
+      <a href="contact.html" class="btn brand">Request a Quote</a>
+    </div>
+    <div class="footer-links">
+      <a href="index.html">Home</a><a href="categories.html">Products</a><a href="news.html">News</a>
+      <a href="about.html">About</a><a href="gallery.html">Gallery</a><a href="contact.html">Contact</a>
+      <a href="privacy.html">Privacy</a><a href="conditions.html">Conditions</a>
+      <a href="https://www.linkedin.com/company/80331793/jobs/" target="_blank" rel="noopener">Careers</a>
+      <a href="https://facebook.com/www.printopack.com.sa" target="_blank" rel="noopener">Facebook</a>
+      <a href="https://www.linkedin.com/company/80331793/" target="_blank" rel="noopener">LinkedIn</a>
+    </div>
+    <div class="footer-mark"><div>Printopack</div></div>
+    <div class="footer-legal">
+      <span>Printopack — Saudi Modern Packaging Factory Co. Ltd. 2026. All rights reserved.</span>
+      <span>Jeddah, KSA — <span id="jClock">--:--:--</span> GMT+3</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* ---- brand database (demo): brands/partners packaged under each category ---- */
+var BRANDS = {
+  chocolates: [
+    { name:"Printopack", desc:"Chocolate and wafer packaging, printed and laminated in-house.",
+      img:"assets/categories/cat01.png", kw:"printopack saudi chocolate wafer packaging modern" }
+  ]
+  // other categories: add brands here as they are onboarded
+};
+
+function norm(s){ return String(s||'').toLowerCase().replace(/[^a-z0-9]/g,''); }
+function esc(s){ var d=document.createElement('div'); d.textContent=s==null?'':String(s); return d.innerHTML; }
+
+var params = new URLSearchParams(location.search);
+var catName = params.get('cat') || 'Products';
+var catImg  = params.get('img') || '';
+var key = norm(catName);
+var list = BRANDS[key] || [];
+if(!list.length){                          // fuzzy match: "Chocolate" vs "Chocolates" etc.
+  for(var k in BRANDS){ if(key && (key.indexOf(k) > -1 || k.indexOf(key) > -1)){ list = BRANDS[k]; break; } }
+}
+
+document.title = catName + ' — Printopack';
+document.getElementById('crumb').textContent = 'Products';
+document.getElementById('catTitle').textContent = catName;
+document.getElementById('catSub').textContent = list.length
+  ? 'Brands and partners we print and package for in this category.'
+  : 'This category has no brands listed yet. Search our partners or request a quote.';
+
+if(catImg){
+  var w = document.getElementById('heroWrap');
+  document.getElementById('heroImg').src = catImg;
+  document.getElementById('heroImg').alt = catName;
+  w.classList.remove('empty');
+}
+
+var grid = document.getElementById('brandGrid');
+var empty = document.getElementById('empty');
+
+function render(items){
+  if(!items.length){ grid.innerHTML=''; empty.style.display='block'; return; }
+  empty.style.display='none';
+  grid.innerHTML = items.map(function(b){
+    return '<article class="brand-card">' +
+      '<div class="bc-img"><img src="' + esc(b.img) + '" alt="' + esc(b.name) + '" loading="lazy"></div>' +
+      '<div class="bc-body"><h3>' + esc(b.name) + '</h3><p>' + esc(b.desc) + '</p></div></article>';
+  }).join('');
+}
+
+function runSearch(){
+  var q = norm(document.getElementById('q').value);
+  if(!q){ render(list); return; }
+  render(list.filter(function(b){
+    return norm(b.name).indexOf(q) > -1 || norm(b.kw).indexOf(q) > -1 || norm(b.desc).indexOf(q) > -1;
+  }));
+}
+
+render(list); // show all brands in the category by default
+document.getElementById('searchBtn').addEventListener('click', runSearch);
+document.getElementById('q').addEventListener('input', runSearch);
+document.getElementById('q').addEventListener('keydown', function(e){ if(e.key==='Enter') runSearch(); });
+</script>
+<script src="assets/live.js?v=1783419816" defer></script>
+<script src="assets/site.js?v=1783419816"></script>
+</body>
+</html>

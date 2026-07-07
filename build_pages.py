@@ -7,6 +7,7 @@ the design system in assets/site.css + assets/site.js.
 Re-run any time: python build_pages.py
 """
 import json, os, re, html, time
+from urllib.parse import quote
 V = str(int(time.time()))
 from PIL import Image
 
@@ -245,9 +246,10 @@ for i, c in enumerate(cats):
         dst = os.path.join(ROOT, "assets", "categories", f"cat{i:02d}.png")
         resize_copy(src, dst, 400)
         img = f'<span class="ci"><img src="assets/categories/cat{i:02d}.png" alt="{html.escape(name)}" loading="lazy"></span>'
+    href = f'product.html?cat={quote(name)}&img=assets/categories/cat{i:02d}.png'
     cat_cards.append(
-        f'<a class="cat-card" href="contact.html" data-rise>{img}<h3>{html.escape(name)}</h3>'
-        f'<span>Enquire &rarr;</span></a>')
+        f'<a class="cat-card" href="{html.escape(href)}" data-rise>{img}<h3>{html.escape(name)}</h3>'
+        f'<span>View &rarr;</span></a>')
 body = page_hero("Products", "Packaging for every category.",
                  "Twenty product categories, one standard of print. Tell us what you make — we will package it.") + f"""
 <section class="section page-body" data-reveal>
