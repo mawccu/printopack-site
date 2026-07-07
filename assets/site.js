@@ -8,6 +8,11 @@
 (function(){
   var hasGSAP = window.gsap && window.ScrollTrigger;
   var REDUCED = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+  // phones never show the 3D model — don't make them download 3.5MB for nothing
+  if(window.matchMedia && matchMedia('(max-width:559px)').matches){
+    var _mv = document.getElementById('heroModel');
+    if(_mv) _mv.removeAttribute('src');
+  }
   if(REDUCED && hasGSAP){ gsap.globalTimeline.timeScale(1000); }   // reveals become instant, layout identical
 
   // console signature — for the ones who look under the hood

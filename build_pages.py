@@ -6,7 +6,8 @@ thank-you, privacy, conditions, 404) from the exported site content, sharing
 the design system in assets/site.css + assets/site.js.
 Re-run any time: python build_pages.py
 """
-import json, os, re, html
+import json, os, re, html, time
+V = str(int(time.time()))
 from PIL import Image
 
 ROOT   = os.path.dirname(os.path.abspath(__file__))
@@ -61,8 +62,8 @@ HEAD = """<!DOCTYPE html>
 <meta property="og:description" content="{desc}">
 <meta property="og:image" content="https://www.printopack.com.sa/assets/hero.jpg">
 <meta name="twitter:card" content="summary_large_image">
-<link rel="stylesheet" href="assets/site.css">
-<link rel="stylesheet" href="assets/pages.css">
+<link rel="stylesheet" href="assets/site.css?v={V}">
+<link rel="stylesheet" href="assets/pages.css?v={V}">
 </head>
 <body>
 <a class="skip-link" href="#top">Skip to content</a>
@@ -122,7 +123,7 @@ FOOTER = """
     </div>
   </div>
 </footer>
-<script src="assets/site.js"></script>
+<script src="assets/site.js?v={V}"></script>
 {extra}
 </body>
 </html>"""
@@ -140,8 +141,8 @@ def page_hero(kicker, title, sub=""):
 """
 
 def write_page(fname, title, desc, active, body, extra_js=""):
-    doc = (HEAD.format(title=html.escape(title), desc=html.escape(desc), fname=fname)
-           + header(active) + body + FOOTER.replace("{extra}", extra_js))
+    doc = (HEAD.format(title=html.escape(title), desc=html.escape(desc), fname=fname, V=V)
+           + header(active) + body + FOOTER.replace("{extra}", extra_js).replace("{V}", V))
     open(os.path.join(ROOT, fname), "w", encoding="utf-8").write(doc)
     print("wrote", fname)
 
