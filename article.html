@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Not found — Printopack</title>
-<meta name="description" content="Page not found.">
+<title>Article — Printopack News</title>
+<meta name="description" content="Printopack news article.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
@@ -12,15 +12,15 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 <script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"></script>
-<link rel="canonical" href="https://www.printopack.com.sa/404.html">
+<link rel="canonical" href="https://www.printopack.com.sa/article.html">
 <meta name="theme-color" content="#0e2042">
 <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
 <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
 <link rel="manifest" href="manifest.webmanifest">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Printopack">
-<meta property="og:title" content="Not found — Printopack">
-<meta property="og:description" content="Page not found.">
+<meta property="og:title" content="Article — Printopack News">
+<meta property="og:description" content="Printopack news article.">
 <meta property="og:image" content="https://www.printopack.com.sa/assets/hero.jpg">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="stylesheet" href="assets/site.css?v=1783419816">
@@ -41,23 +41,22 @@
       </div>
       <a href="index.html" class="brand"><img src="assets/logo_nav.png" alt="Printopack" class="brand-logo"></a>
     </div>
-    <nav class="nav-links"><a href="index.html">Home</a><a href="categories.html">Products</a><a href="news.html">News</a><a href="about.html">About</a><a href="gallery.html">Gallery</a><a href="contact.html">Contact</a></nav>
+    <nav class="nav-links"><a href="index.html">Home</a><a href="categories.html">Products</a><a href="news.html" class="on">News</a><a href="about.html">About</a><a href="gallery.html">Gallery</a><a href="contact.html">Contact</a></nav>
     <a href="contact.html" class="btn brand">Request a Quote</a>
   </div>
 </header>
 <main id="top">
 <section class="section page-hero" data-reveal>
   <div class="wrap">
-    <span class="ph-kicker" data-rise>404</span>
-    <h1 data-split>This page went missing.</h1>
-    
+    <span class="ph-kicker" id="artKicker" data-rise>News</span>
+    <h1 id="artTitle">&nbsp;</h1>
   </div>
 </section>
-
 <section class="section page-body" data-reveal>
-  <div class="wrap"><div class="center-card" data-rise>
-    <p class="ph-sub" style="margin:0 auto 30px;">The address may have changed. Head back home and try again.</p>
-    <a href="index.html" class="btn brand">Back to home</a>
+  <div class="wrap"><div class="article" data-rise>
+    <a class="a-back uwipe" href="news.html">&larr; Back to news</a>
+    <div class="a-hero-img" id="artImg" style="display:none"><img alt=""></div>
+    <div class="article-body" id="artBody"><p>Loading&hellip;</p></div>
   </div></div>
 </section>
 </main>

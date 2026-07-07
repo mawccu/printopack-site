@@ -86,7 +86,7 @@ def header(active):
     <div class="nav-cluster">
       <div class="nav-account">
         <a href="https://printopack.azurewebsites.net/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 3.6-6.5 8-6.5s8 2.5 8 6.5"/></svg>Customer Login</a>
-        <a href="#" class="admin-login"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 3.6-6.5 8-6.5s8 2.5 8 6.5"/></svg>Admin</a>
+        <a href="https://printopack.azurewebsites.net/" target="_blank" rel="noopener" class="admin-login"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 3.6-6.5 8-6.5s8 2.5 8 6.5"/></svg>Admin</a>
       </div>
       <a href="index.html" class="brand"><img src="assets/logo_nav.png" alt="Printopack" class="brand-logo"></a>
     </div>
@@ -104,9 +104,9 @@ FOOTER = """
       <a href="contact.html" class="btn brand" data-rise>Request a Quote</a>
     </div>
     <div class="footer-cards">
-      <a href="tel:+966126081074" class="footer-card" data-rise><h3>Call us</h3><span>+966 12 608 1074 &nbsp;&middot;&nbsp; Fax +966 12 608 1082</span></a>
-      <a href="mailto:info@printopack.com.sa" class="footer-card" data-rise><h3>Email us</h3><span>info@printopack.com.sa &nbsp;&middot;&nbsp; 9:00 AM &ndash; 5:00 PM</span></a>
-      <a href="contact.html" class="footer-card" data-rise><h3>Visit us</h3><span>Industrial Area 5, Unit 10, 8508, Jeddah 22428, Saudi Arabia</span></a>
+      <a href="tel:+966126081074" data-live-href="tel" class="footer-card" data-rise><h3>Call us</h3><span><span data-live="phone">+966 12 608 1074</span> &nbsp;&middot;&nbsp; Fax <span data-live="fax">+966 12 608 1082</span></span></a>
+      <a href="mailto:info@printopack.com.sa" data-live-href="mailto" class="footer-card" data-rise><h3>Email us</h3><span><span data-live="email">info@printopack.com.sa</span> &nbsp;&middot;&nbsp; <span data-live="hours">9:00 AM &ndash; 5:00 PM</span></span></a>
+      <a href="contact.html" class="footer-card" data-rise><h3>Visit us</h3><span data-live="address">Industrial Area 5, Unit 10, 8508, Jeddah 22428, Saudi Arabia</span></a>
     </div>
     <div class="footer-links" data-rise>
       <a href="index.html">Home</a><a href="categories.html">Products</a><a href="news.html">News</a>
@@ -123,6 +123,7 @@ FOOTER = """
     </div>
   </div>
 </footer>
+<script src="assets/live.js?v={V}" defer></script>
 <script src="assets/site.js?v={V}"></script>
 {extra}
 </body>
@@ -300,7 +301,8 @@ body = page_hero("News", "Stories from the press floor.",
   <div class="wrap"><div class="news-grid">{''.join(news_cards)}</div></div>
 </section>
 </main>"""
-write_page("news.html", "News — Printopack", "Printopack news and articles.", "news", body)
+ids_js = "<script>window.__staticNews=" + json.dumps([bb["id"] for bb in blogs]) + "</script>"
+write_page("news.html", "News — Printopack", "Printopack news and articles.", "news", body, ids_js)
 
 # ---------------------------------------------------------------- about
 body = page_hero("Company", "Packaging pioneers since 1997.",
@@ -376,8 +378,9 @@ body = page_hero("Gallery", "Inside the facility.",
 gal_js = """<script>
 (function(){
   var lb=document.getElementById('lightbox'), im=document.getElementById('lightboxImg');
-  document.querySelectorAll('.gal-item').forEach(function(g){
-    g.addEventListener('click', function(){ im.src=g.getAttribute('data-full'); lb.classList.add('on'); });
+  document.addEventListener('click', function(e){
+    var g = e.target.closest && e.target.closest('.gal-item');
+    if(g){ im.src=g.getAttribute('data-full'); lb.classList.add('on'); }
   });
   lb.addEventListener('click', function(){ lb.classList.remove('on'); });
 })();
@@ -503,5 +506,24 @@ body = page_hero("404", "This page went missing.") + """
 </section>
 </main>"""
 write_page("404.html", "Not found — Printopack", "Page not found.", "", body)
+
+
+# ---------------------------------------------------------------- dynamic article viewer
+body = """<main id="top">
+<section class="section page-hero" data-reveal>
+  <div class="wrap">
+    <span class="ph-kicker" id="artKicker" data-rise>News</span>
+    <h1 id="artTitle">&nbsp;</h1>
+  </div>
+</section>
+<section class="section page-body" data-reveal>
+  <div class="wrap"><div class="article" data-rise>
+    <a class="a-back uwipe" href="news.html">&larr; Back to news</a>
+    <div class="a-hero-img" id="artImg" style="display:none"><img alt=""></div>
+    <div class="article-body" id="artBody"><p>Loading&hellip;</p></div>
+  </div></div>
+</section>
+</main>"""
+write_page("article.html", "Article — Printopack News", "Printopack news article.", "news", body)
 
 print("BUILD COMPLETE")

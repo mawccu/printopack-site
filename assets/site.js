@@ -54,16 +54,16 @@
     "Contact":"اتصل بنا",
     "FAQs":"الأسئلة",
     "Customer":"دخول العملاء",
-    "Admin":"الإدارة",
+    "Admin":"لوحة الإدارة",
     "Customer Login":"دخول العملاء",
     "Request a Quote":"اطلب عرض سعر",
     "Scroll":"مرّر",
-    "Est. 1997":"تأسست ١٩٩٧",
-    "Saudi Modern Packaging Factory Co. Ltd.":"مصنع السعودية الحديثة للتغليف المحدود",
-    "Packaging that performs. Printed for brands that lead.":"تغليف يتفوّق. مطبوع لعلامات تجارية تقود.",
+    "Est. 1997":"تأسس عام ١٩٩٧",
+    "Saudi Modern Packaging Factory Co. Ltd.":"شركة مصنع السعودية الحديثة للتغليف المحدودة",
+    "Packaging that performs. Printed for brands that lead.":"تغليفٌ عالي الأداء، مطبوعٌ لعلاماتٍ رائدة.",
     "Where technology meets vision.":"حيث تلتقي التقنية بالرؤية.",
-    "Committed to excellence, always innovating":"ملتزمون بالتميّز، نبتكر دائمًا",
-    "What we make":"ماذا نصنع",
+    "Committed to excellence, always innovating":"ملتزمون بالتميّز، دائمو الابتكار",
+    "What we make":"ما نصنعه",
     "Custom solutions":"حلول مخصصة",
     "Standards":"المعايير",
     "Clients":"العملاء",
@@ -72,31 +72,31 @@
     "Factory & product standards":"معايير المصنع والمنتج",
     "Our clients":"عملاؤنا",
     "Frequently asked questions":"الأسئلة الشائعة",
-    "Set the standard for packaging in your industry.":"ضع معيار التغليف في مجالك.",
-    "Tell me more":"اعرف المزيد",
+    "Set the standard for packaging in your industry.":"ارسِ معيار التغليف في قطاعك.",
+    "Tell me more":"اكتشف المزيد",
     "About us":"من نحن",
     "Talk to us":"تحدث معنا",
     "Regional offices":"مكاتب إقليمية",
     "Countries served":"دولة نخدمها",
-    "Years of printing":"عامًا من الطباعة",
+    "Years of printing":"عامًا في الطباعة",
     "Team members":"موظفًا",
     "Call us":"اتصل بنا",
     "Email us":"راسلنا",
     "Visit us":"زرنا",
-    "Trusted by leading food, beverage and consumer brands.":"موثوقون لدى كبرى علامات الأغذية والمشروبات والمستهلك.",
+    "Trusted by leading food, beverage and consumer brands.":"محل ثقة كبرى علامات الأغذية والمشروبات والسلع الاستهلاكية.",
     "Snacks & Confectionery":"الوجبات الخفيفة والحلويات",
     "Beverage & Dairy":"المشروبات والألبان",
-    "Home & Everyday":"المنزل واليومي",
-    "Home & Everyday Essentials":"المنزل والأساسيات اليومية",
+    "Home & Everyday":"المنزل والاستخدام اليومي",
+    "Home & Everyday Essentials":"أساسيات المنزل والاستخدام اليومي",
     "OUR MISSION":"رسالتنا",
     "OUR VISION":"رؤيتنا",
-    "Packaging pioneers since 1997. From our Jeddah facility, every structure, laminate and print run is refined until it meets the Printopack standard — then delivered on time, every time.":"روّاد التغليف منذ ١٩٩٧. من منشأتنا في جدة، نُتقن كل تركيبة وطبقة وطبعة حتى تبلغ معيار برينتوباك — ثم نسلّمها في موعدها، في كل مرة.",
-    "To provide creative, compliant flexible packaging with industry-leading customer service to food, beverage, pharmaceutical, and consumer brands across a diverse global marketplace.":"تقديم تغليف مرن مبتكر ومتوافق مع المعايير، مع خدمة عملاء رائدة لعلامات الأغذية والمشروبات والأدوية والمستهلك حول العالم.",
-    "To be the region's trusted, industry-leading packaging partner — known for ethical practice, reliable supply, and award-winning innovation.":"أن نكون شريك التغليف الموثوق والرائد في المنطقة — بممارسات أخلاقية وتوريد موثوق وابتكار متميّز.",
-    "Packaging for every category.":"تغليف لكل فئة.",
+    "Packaging pioneers since 1997. From our Jeddah facility, every structure, laminate and print run is refined until it meets the Printopack standard — then delivered on time, every time.":"روّاد التغليف منذ عام ١٩٩٧. من منشأتنا في جدة نُتقن كل تركيبةٍ وطبقةٍ وطبعة حتى تبلغ معيار برينتوباك، ثم نسلّمها في موعدها في كل مرة.",
+    "To provide creative, compliant flexible packaging with industry-leading customer service to food, beverage, pharmaceutical, and consumer brands across a diverse global marketplace.":"تقديم حلول تغليف مرنة مبتكرة ومطابقة للمعايير، مع خدمة عملاء رائدة، لعلامات الأغذية والمشروبات والأدوية والسلع الاستهلاكية في سوق عالمي متنوع.",
+    "To be the region's trusted, industry-leading packaging partner — known for ethical practice, reliable supply, and award-winning innovation.":"أن نكون شريك التغليف الأجدر بالثقة والأكثر ريادةً في المنطقة، المعروف بممارساته الأخلاقية وتوريده الموثوق وابتكاره الحائز على الجوائز.",
+    "Packaging for every category.":"حلول تغليف لكل فئة.",
     "Stories from the press floor.":"قصص من قلب المطبعة.",
     "Inside the facility.":"داخل المنشأة.",
-    "Let's make something remarkable.":"لنصنع شيئًا استثنائيًا.",
+    "Let's make something remarkable.":"لنصنع معًا شيئًا استثنائيًا.",
     "Thank you":"شكرًا لك",
     "Message received.":"وصلتنا رسالتك.",
     "Legal":"قانوني",
@@ -108,7 +108,7 @@
     "Country":"الدولة",
     "City":"المدينة",
     "Message":"الرسالة",
-    "Send message":"أرسل الرسالة",
+    "Send message":"إرسال",
     "Back to home":"العودة إلى الرئيسية",
     "Head office — Jeddah":"المكتب الرئيسي — جدة",
     "Chips & Snacks":"شيبس ومقرمشات",
@@ -151,15 +151,15 @@
     "Yes. We offer recyclable mono-material structures, down-gauged films, and packaging with post-consumer recycled content.":"نعم. نوفر هياكل أحادية المادة قابلة للتدوير وأفلامًا مخففة وتغليفًا بمحتوى معاد تدويره.",
     "Printopack — Saudi Modern Packaging Factory Co. Ltd. 2026. All rights reserved.":"برينتوباك — مصنع السعودية الحديثة للتغليف المحدود ٢٠٢٦. جميع الحقوق محفوظة.",
     "Jeddah, KSA —":"جدة، السعودية —",
-    "See what we make →":"شاهد ما نصنع ←",
+    "See what we make →":"شاهد ما نصنعه ←",
     "Request full specifications →":"اطلب المواصفات الكاملة ←",
     "Privacy":"الخصوصية",
     "Conditions":"الشروط",
     "Careers":"الوظائف",
-    "Enquire →":"استفسر ←",
-    "Global reach":"انتشار عالمي",
+    "Enquire →":"استفسر الآن ←",
+    "Global reach":"حضور عالمي",
     "From Jeddah to the world.":"من جدة إلى العالم.",
-    "Seven offices. 26+ countries served. One standard of print.":"سبعة مكاتب. أكثر من ٢٦ دولة. معيار طباعة واحد.",
+    "Seven offices. 26+ countries served. One standard of print.":"سبعة مكاتب، وأكثر من ٢٦ دولة، ومعيار طباعة واحد.",
     "+26 countries served":"+٢٦ دولة نخدمها",
     "Jeddah — HQ":"جدة — المقر الرئيسي",
     "Kuwait":"الكويت",
@@ -256,6 +256,21 @@
     marquees.push(m);
     return m;
   }
+  // swap a marquee's content (live hydration) and rebuild its loop
+  window.__refreshMarquee = function(marqueeEl, html){
+    if(!marqueeEl || !hasGSAP) return;
+    var inner = marqueeEl.querySelector('.marquee-inner');
+    if(!inner) return;
+    for(var i = marquees.length - 1; i >= 0; i--){
+      if(marquees[i].inner === inner){
+        if(marquees[i].tween) marquees[i].tween.kill();
+        marquees.splice(i, 1);
+      }
+    }
+    inner.innerHTML = html;
+    gsap.set(inner, {x: 0, skewX: 0});
+    buildMarquee(marqueeEl);
+  };
 
   /* ---------- Mobile menu: burger + full-screen navy overlay ---------- */
   function initMobileMenu(){
@@ -286,7 +301,7 @@
     html += '<div class="mm-foot">' +
       '<a href="https://printopack.azurewebsites.net/" target="_blank" rel="noopener">' +
         (isAr ? 'دخول العملاء' : 'Customer Login') + '</a>' +
-      '<a href="#">' + (isAr ? 'الإدارة' : 'Admin') + '</a></div>';
+      '<a href="https://printopack.azurewebsites.net/" target="_blank" rel="noopener">' + (isAr ? 'لوحة الإدارة' : 'Admin') + '</a></div>';
     menu.innerHTML = html;
     document.body.appendChild(menu);
 
