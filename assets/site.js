@@ -252,8 +252,54 @@
     return m;
   }
 
+  /* ---------- Mobile menu: burger + full-screen navy overlay ---------- */
+  function initMobileMenu(){
+    var nav = document.querySelector('.nav');
+    if(!nav || document.querySelector('.nav-toggle')) return;
+    var isAr = document.documentElement.lang === 'ar';
+
+    var toggle = document.createElement('button');
+    toggle.className = 'nav-toggle';
+    toggle.type = 'button';
+    toggle.setAttribute('aria-label', isAr ? 'القائمة' : 'Menu');
+    toggle.innerHTML = '<span></span><span></span>';
+    nav.appendChild(toggle);
+
+    var menu = document.createElement('nav');
+    menu.className = 'mobile-menu';
+    menu.setAttribute('aria-label', isAr ? 'قائمة الجوال' : 'Mobile navigation');
+    var html = '', i = 0;
+    document.querySelectorAll('.nav-links a').forEach(function(a){
+      html += '<a class="mm-link" href="' + a.getAttribute('href') + '" style="--i:' + (i++) +
+              '"><span>' + a.textContent.trim() + '</span></a>';
+    });
+    var cta = document.querySelector('.nav .btn');
+    if(cta){
+      html += '<a class="mm-link mm-cta" href="' + cta.getAttribute('href') + '" style="--i:' + (i++) +
+              '"><span>' + cta.textContent.trim() + '</span></a>';
+    }
+    html += '<div class="mm-foot">' +
+      '<a href="https://printopack.azurewebsites.net/" target="_blank" rel="noopener">' +
+        (isAr ? 'دخول العملاء' : 'Customer Login') + '</a>' +
+      '<a href="#">' + (isAr ? 'الإدارة' : 'Admin') + '</a></div>';
+    menu.innerHTML = html;
+    document.body.appendChild(menu);
+
+    function setOpen(open){
+      document.documentElement.classList.toggle('menu-open', open);
+      if(window.__lenis){ open ? window.__lenis.stop() : window.__lenis.start(); }
+    }
+    toggle.addEventListener('click', function(){
+      setOpen(!document.documentElement.classList.contains('menu-open'));
+    });
+    menu.querySelectorAll('a').forEach(function(a){
+      a.addEventListener('click', function(){ setOpen(false); });
+    });
+  }
+
   /* ---------- Accordion interactions (FAQ + Solutions) ---------- */
   function initInteractions(){
+    initMobileMenu();
     // FAQ — click to toggle, single-open. CSS animates opacity; JS drives height.
     function setH(a, open){ a.style.maxHeight = open ? a.scrollHeight + 'px' : '0px'; }
     var faqItems = document.querySelectorAll('[data-faq]');
@@ -728,6 +774,7 @@
     /* ---- Lenis smooth scroll, synced to GSAP ---- */
     if(window.Lenis){
       var lenis = new Lenis({duration:1.2, easing:function(t){return Math.min(1,1.001-Math.pow(2,-10*t));}, smoothWheel:true});
+      window.__lenis = lenis;
       if(window.__introPending){ lenis.stop(); window.__introLenis = lenis; }   // scroll is frozen until the intro releases
       lenis.on('scroll', function(e){
         if(hasGSAP) ScrollTrigger.update();
