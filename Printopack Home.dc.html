@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,300..800&display=swap" rel="stylesheet">
+<script src="image-slot.js"></script>
+<style>
+  html, body { margin: 0; padding: 0; background: #F3F0E9; }
+  body { font-family: 'Archivo', sans-serif; }
+  * { box-sizing: border-box; }
+  a { color: #141815; text-decoration: none; }
+  a:hover { color: #1E5A46; }
+  ::selection { background: #1E5A46; color: #F3F0E9; }
+  @keyframes ppMarquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+  @keyframes ppLoaderTile { 0%, 100% { opacity: 0; transform: scale(0.92); } 8%, 18% { opacity: 1; transform: scale(1); } 26% { opacity: 0; transform: scale(0.92); } }
+  @keyframes ppLoaderExit { 0%, 82% { transform: translateY(0); } 100% { transform: translateY(-101%); } }
+  @keyframes ppLoaderWord { 0% { clip-path: inset(0 100% 0 0); } 45%, 100% { clip-path: inset(0 0 0 0); } }
+  @keyframes ppHeroIn { from { opacity: 0; transform: translateY(40px); } to { opacity: 1; transform: translateY(0); } }
+</style>
+</helmet>
+
+<div data-dc-ref="root" data-screen-label="Printopack Homepage" style="--accent: #1E5A46; --ink: #141815; --paper: #F3F0E9; --card: #FFFFFF; background: var(--paper); color: var(--ink); min-height: 100vh; overflow-x: clip;">
+
+  <!-- ===== Intro loader ===== -->
+  <sc-if value="{{ showLoader }}" hint-placeholder-val="{{ true }}">
+    <div style="position: fixed; inset: 0; z-index: 90; background: var(--ink); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 36px; animation: ppLoaderExit 2.6s cubic-bezier(0.76, 0, 0.24, 1) forwards; will-change: transform;">
+      <div style="position: relative; width: 88px; height: 88px;">
+        <div style="position: absolute; inset: 0; border-radius: 18px; background: #1E5A46; animation: ppLoaderTile 2.2s linear infinite; animation-delay: 0s;"></div>
+        <div style="position: absolute; inset: 0; border-radius: 18px; background: #C9B98A; animation: ppLoaderTile 2.2s linear infinite; animation-delay: 0.44s; opacity: 0;"></div>
+        <div style="position: absolute; inset: 0; border-radius: 18px; background: #7A9E8C; animation: ppLoaderTile 2.2s linear infinite; animation-delay: 0.88s; opacity: 0;"></div>
+        <div style="position: absolute; inset: 0; border-radius: 18px; background: #E5DFCE; animation: ppLoaderTile 2.2s linear infinite; animation-delay: 1.32s; opacity: 0;"></div>
+        <div style="position: absolute; inset: 0; border-radius: 18px; background: #35544A; animation: ppLoaderTile 2.2s linear infinite; animation-delay: 1.76s; opacity: 0;"></div>
+      </div>
+      <div style="font-size: 28px; font-weight: 700; letter-spacing: 0.32em; color: #F3F0E9; font-stretch: 115%; animation: ppLoaderWord 1.6s cubic-bezier(0.76, 0, 0.24, 1) forwards;">PRINTOPACK</div>
+    </div>
+  </sc-if>
+
+  <!-- ===== Sticky nav ===== -->
+  <header style="position: sticky; top: 0; z-index: 50; background: rgba(243, 240, 233, 0.92); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(20, 24, 21, 0.1);">
+    <div style="max-width: 1440px; margin: 0 auto; padding: 0 40px; height: 76px; display: flex; align-items: center; justify-content: space-between; gap: 32px;">
+      <a href="#top" style="font-size: 21px; font-weight: 800; letter-spacing: 0.14em; font-stretch: 115%;">PRINTOPACK</a>
+      <nav style="display: flex; align-items: center; gap: 8px; font-size: 15px; font-weight: 500;">
+        <div onMouseEnter="{{ openMenu }}" onMouseLeave="{{ closeMenu }}" style="position: relative;">
+          <a href="#solutions" style="display: flex; align-items: center; gap: 6px; padding: 12px 16px; border-radius: 999px;" style-hover="background: rgba(20,24,21,0.06);">Solutions <span style="font-size: 10px; display: inline-block; transform: {{ chevTransform }}; transition: transform 0.25s ease;">▼</span></a>
+          <sc-if value="{{ menuOpen }}" hint-placeholder-val="{{ false }}">
+            <div style="position: absolute; top: 100%; left: -12px; padding-top: 10px; width: 560px;">
+              <div style="background: var(--card); border-radius: 20px; border: 1px solid rgba(20,24,21,0.08); box-shadow: 0 24px 60px rgba(20,24,21,0.16); padding: 20px; display: grid; grid-template-columns: 1fr 1fr; gap: 8px;">
+                <a href="#solutions" style="padding: 16px; border-radius: 14px; display: flex; flex-direction: column; gap: 4px;" style-hover="background: var(--paper);"><strong style="font-size: 15px;">Food &amp; Beverage</strong><span style="font-size: 13px; color: rgba(20,24,21,0.6);">High-barrier films and pouches for freshness</span></a>
+                <a href="#solutions" style="padding: 16px; border-radius: 14px; display: flex; flex-direction: column; gap: 4px;" style-hover="background: var(--paper);"><strong style="font-size: 15px;">Pharma &amp; Healthcare</strong><span style="font-size: 13px; color: rgba(20,24,21,0.6);">Compliant, tamper-evident formats</span></a>
+                <a href="#solutions" style="padding: 16px; border-radius: 14px; display: flex; flex-direction: column; gap: 4px;" style-hover="background: var(--paper);"><strong style="font-size: 15px;">Personal &amp; Home Care</strong><span style="font-size: 13px; color: rgba(20,24,21,0.6);">Shelf impact for everyday brands</span></a>
+                <a href="#custom" style="padding: 16px; border-radius: 14px; display: flex; flex-direction: column; gap: 4px; background: var(--accent); color: #F3F0E9;" style-hover="filter: brightness(1.1); color: #F3F0E9;"><strong style="font-size: 15px;">Custom solutions</strong><span style="font-size: 13px; opacity: 0.75;">Structures and print built to your spec</span></a>
+              </div>
+            </div>
+          </sc-if>
+        </div>
+        <a href="#about" style="padding: 12px 16px; border-radius: 999px;" style-hover="background: rgba(20,24,21,0.06);">Company</a>
+        <a href="#capabilities" style="padding: 12px 16px; border-radius: 999px;" style-hover="background: rgba(20,24,21,0.06);">Capabilities</a>
+        <a href="#faq" style="padding: 12px 16px; border-radius: 999px;" style-hover="background: rgba(20,24,21,0.06);">FAQs</a>
+      </nav>
+      <a href="#contact" style="background: var(--ink); color: var(--paper); padding: 13px 26px; border-radius: 999px; font-size: 15px; font-weight: 600; transition: background 0.25s ease, transform 0.25s ease;" style-hover="background: var(--accent); color: var(--paper); transform: translateY(-2px);">Request a Quote</a>
+    </div>
+  </header>
+
+  <!-- ===== Hero ===== -->
+  <section id="top" style="max-width: 1440px; margin: 0 auto; padding: 28px 40px 0;">
+    <div style="position: relative; border-radius: 28px; overflow: hidden; background: var(--ink);">
+      <x-import component-from-global-scope="image-slot" id="hero-img" shape="rect" fit="cover" placeholder="Drop a hero image — flexible packaging line or product shot" style="width: 100%; height: 620px; display: block; opacity: 0.88;" hint-size="100%,620px"></x-import>
+      <div style="position: absolute; inset: 0; pointer-events: none; background: linear-gradient(to top, rgba(15,18,16,0.72) 0%, rgba(15,18,16,0.05) 55%); display: flex; align-items: flex-end;">
+        <div style="padding: 56px; animation: ppHeroIn 1s cubic-bezier(0.22, 1, 0.36, 1) 2.4s both;">
+          <h1 style="margin: 0 0 20px; color: #F6F3EC; font-size: clamp(44px, 5.4vw, 78px); line-height: 1.02; font-weight: 700; font-stretch: 112%; letter-spacing: -0.015em; max-width: 15ch; text-wrap: pretty;">Flexible packaging that performs. Printed to impress.</h1>
+          <p style="margin: 0 0 28px; color: rgba(246,243,236,0.82); font-size: 19px; line-height: 1.5; max-width: 52ch;">Printopack is a leading flexible packaging company serving brands across the region and beyond — creative packaging solutions, dependable service, and award-winning innovation.</p>
+          <div style="display: flex; gap: 14px; pointer-events: auto;">
+            <a href="#capabilities" style="background: #F6F3EC; color: var(--ink); padding: 16px 32px; border-radius: 999px; font-size: 16px; font-weight: 600; transition: transform 0.25s ease, background 0.25s ease;" style-hover="transform: translateY(-3px); background: #FFFFFF; color: var(--ink);">See capabilities</a>
+            <a href="#contact" style="border: 1px solid rgba(246,243,236,0.5); color: #F6F3EC; padding: 16px 32px; border-radius: 999px; font-size: 16px; font-weight: 600; transition: transform 0.25s ease, border-color 0.25s ease;" style-hover="transform: translateY(-3px); border-color: #F6F3EC; color: #F6F3EC;">Talk to our team</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Industries ===== -->
+  <section id="solutions" style="max-width: 1440px; margin: 0 auto; padding: 96px 40px 0;">
+    <div data-reveal="0" style="display: flex; align-items: baseline; justify-content: space-between; gap: 24px; flex-wrap: wrap; margin-bottom: 40px;">
+      <h2 style="margin: 0; font-size: clamp(32px, 3.4vw, 48px); font-weight: 700; font-stretch: 112%; letter-spacing: -0.01em;">Packaging solutions by industry</h2>
+      <span style="font-size: 15px; color: rgba(20,24,21,0.55);">Standard formats, customised, or designed from scratch</span>
+    </div>
+    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;">
+      <sc-for list="{{ industries }}" as="ind" hint-placeholder-count="3">
+        <a href="#contact" data-reveal="{{ ind.delay }}" style="display: flex; flex-direction: column; background: var(--card); border-radius: 24px; overflow: hidden; border: 1px solid rgba(20,24,21,0.08); transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.35s ease;" style-hover="transform: translateY(-8px); box-shadow: 0 28px 56px rgba(20,24,21,0.14); color: var(--ink);">
+          <x-import component-from-global-scope="image-slot" id="{{ ind.slotId }}" shape="rect" fit="cover" placeholder="{{ ind.placeholder }}" style="width: 100%; height: 260px; display: block;" hint-size="100%,260px"></x-import>
+          <div style="padding: 26px 26px 30px; display: flex; flex-direction: column; gap: 10px; flex: 1;">
+            <h3 style="margin: 0; font-size: 24px; font-weight: 700; font-stretch: 110%;">{{ ind.title }}</h3>
+            <p style="margin: 0; font-size: 15px; line-height: 1.55; color: rgba(20,24,21,0.65); flex: 1;">{{ ind.body }}</p>
+            <span style="font-size: 15px; font-weight: 600; color: var(--accent); display: inline-flex; align-items: center; gap: 8px;">Tell me more <span style="transition: transform 0.25s ease;">→</span></span>
+          </div>
+        </a>
+      </sc-for>
+    </div>
+  </section>
+
+  <!-- ===== Marquee ===== -->
+  <section style="margin: 96px 0 0; padding: 26px 0; background: var(--ink); overflow: hidden;">
+    <div style="display: flex; width: max-content; animation: ppMarquee 26s linear infinite; will-change: transform;">
+      <div style="display: flex; align-items: center; gap: 48px; padding-right: 48px; color: #F3F0E9; font-size: 22px; font-weight: 600; font-stretch: 110%; letter-spacing: 0.04em; white-space: nowrap;">
+        <span>Rotogravure Printing</span><span style="color: var(--accent); font-size: 14px;">●</span>
+        <span>High-Barrier Laminates</span><span style="color: var(--accent); font-size: 14px;">●</span>
+        <span>Quality</span><span style="color: var(--accent); font-size: 14px;">●</span>
+        <span>Custom Packaging</span><span style="color: var(--accent); font-size: 14px;">●</span>
+        <span>Sustainability</span><span style="color: var(--accent); font-size: 14px;">●</span>
+        <span>Innovation</span><span style="color: var(--accent); font-size: 14px;">●</span>
+        <span>Partnerships</span><span style="color: var(--accent); font-size: 14px;">●</span>
+      </div>
+      <div style="display: flex; align-items: center; gap: 48px; padding-right: 48px; color: #F3F0E9; font-size: 22px; font-weight: 600; font-stretch: 110%; letter-spacing: 0.04em; white-space: nowrap;">
+        <span>Rotogravure Printing</span><span style="color: var(--accent); font-size: 14px;">●</span>
+        <span>High-Barrier Laminates</span><span style="color: var(--accent); font-size: 14px;">●</span>
+        <span>Quality</span><span style="color: var(--accent); font-size: 14px;">●</span>
+        <span>Custom Packaging</span><span style="color: var(--accent); font-size: 14px;">●</span>
+        <span>Sustainability</span><span style="color: var(--accent); font-size: 14px;">●</span>
+        <span>Innovation</span><span style="color: var(--accent); font-size: 14px;">●</span>
+        <span>Partnerships</span><span style="color: var(--accent); font-size: 14px;">●</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== About / mission ===== -->
+  <section id="about" style="max-width: 1440px; margin: 0 auto; padding: 110px 40px 0;">
+    <div style="display: grid; grid-template-columns: 1.1fr 1fr; gap: 64px; align-items: start;">
+      <div data-reveal="0">
+        <h2 style="margin: 0 0 20px; font-size: clamp(34px, 3.6vw, 52px); line-height: 1.06; font-weight: 700; font-stretch: 112%; letter-spacing: -0.01em; text-wrap: pretty;">Committed to excellence, always innovating</h2>
+        <p style="margin: 0 0 28px; font-size: 18px; line-height: 1.6; color: rgba(20,24,21,0.7); max-width: 50ch;">Remarkable packaging is our promise. Every structure, laminate, and print run is refined until it meets the Printopack standard — then delivered on time, every time.</p>
+        <a href="#contact" style="display: inline-block; background: var(--ink); color: var(--paper); padding: 15px 30px; border-radius: 999px; font-size: 15px; font-weight: 600; transition: background 0.25s ease, transform 0.25s ease;" style-hover="background: var(--accent); color: var(--paper); transform: translateY(-2px);">About us</a>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 20px;">
+        <div data-reveal="1" style="background: var(--card); border: 1px solid rgba(20,24,21,0.08); border-radius: 22px; padding: 30px 32px;">
+          <h3 style="margin: 0 0 10px; font-size: 20px; font-weight: 700; font-stretch: 110%; color: var(--accent);">Our mission</h3>
+          <p style="margin: 0; font-size: 16px; line-height: 1.6; color: rgba(20,24,21,0.72);">To provide creative, compliant flexible packaging with industry-leading customer service to food, beverage, pharmaceutical, and consumer brands across a diverse global marketplace.</p>
+        </div>
+        <div data-reveal="2" style="background: var(--card); border: 1px solid rgba(20,24,21,0.08); border-radius: 22px; padding: 30px 32px;">
+          <h3 style="margin: 0 0 10px; font-size: 20px; font-weight: 700; font-stretch: 110%; color: var(--accent);">Our vision</h3>
+          <p style="margin: 0; font-size: 16px; line-height: 1.6; color: rgba(20,24,21,0.72);">To be the region's trusted, industry-leading packaging partner — known for ethical practice, reliable supply, and award-winning innovation.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Capabilities ===== -->
+  <section id="capabilities" style="max-width: 1440px; margin: 0 auto; padding: 110px 40px 0;">
+    <div data-reveal="0" style="display: flex; align-items: baseline; justify-content: space-between; gap: 24px; flex-wrap: wrap; margin-bottom: 40px;">
+      <h2 style="margin: 0; font-size: clamp(32px, 3.4vw, 48px); font-weight: 700; font-stretch: 112%; letter-spacing: -0.01em;">Capabilities</h2>
+      <a href="#contact" style="font-size: 15px; font-weight: 600; color: var(--accent);">Request full specifications →</a>
+    </div>
+    <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px;">
+      <sc-for list="{{ capabilities }}" as="cap" hint-placeholder-count="4">
+        <div data-reveal="{{ cap.delay }}" style="background: var(--card); border: 1px solid rgba(20,24,21,0.08); border-radius: 22px; overflow: hidden; display: flex; flex-direction: column; transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.35s ease;" style-hover="transform: translateY(-6px); box-shadow: 0 22px 44px rgba(20,24,21,0.12);">
+          <x-import component-from-global-scope="image-slot" id="{{ cap.slotId }}" shape="rect" fit="cover" placeholder="{{ cap.placeholder }}" style="width: 100%; height: 190px; display: block;" hint-size="100%,190px"></x-import>
+          <div style="padding: 20px 22px 24px; display: flex; flex-direction: column; gap: 8px;">
+            <h3 style="margin: 0; font-size: 18px; font-weight: 700; font-stretch: 110%;">{{ cap.title }}</h3>
+            <p style="margin: 0; font-size: 14px; line-height: 1.55; color: rgba(20,24,21,0.62);">{{ cap.body }}</p>
+          </div>
+        </div>
+      </sc-for>
+    </div>
+  </section>
+
+  <!-- ===== Custom solutions banner ===== -->
+  <section id="custom" style="max-width: 1440px; margin: 110px auto 0; padding: 0 40px;">
+    <div data-reveal="0" style="position: relative; border-radius: 28px; overflow: hidden; background: var(--accent);">
+      <x-import component-from-global-scope="image-slot" id="custom-banner" shape="rect" fit="cover" placeholder="Drop an image — custom printed pouches / press room" style="width: 100%; height: 420px; display: block; opacity: 0.35;" hint-size="100%,420px"></x-import>
+      <div style="position: absolute; inset: 0; pointer-events: none; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 48px;">
+        <span style="font-size: 14px; font-weight: 600; letter-spacing: 0.22em; color: rgba(246,243,236,0.75); margin-bottom: 16px;">CUSTOM SOLUTIONS</span>
+        <h2 style="margin: 0 0 26px; color: #F6F3EC; font-size: clamp(30px, 3.2vw, 46px); line-height: 1.12; font-weight: 700; font-stretch: 112%; max-width: 24ch; text-wrap: pretty;">Brands that thrive invest in custom-designed packaging. Let's bring your vision to life.</h2>
+        <a href="#contact" style="pointer-events: auto; background: #F6F3EC; color: var(--ink); padding: 16px 34px; border-radius: 999px; font-size: 16px; font-weight: 600; transition: transform 0.25s ease;" style-hover="transform: translateY(-3px); color: var(--ink);">Get in touch</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Certifications ===== -->
+  <section style="max-width: 1440px; margin: 0 auto; padding: 110px 40px 0;">
+    <div data-reveal="0" style="text-align: center; margin-bottom: 36px;">
+      <h2 style="margin: 0 0 12px; font-size: clamp(28px, 3vw, 40px); font-weight: 700; font-stretch: 112%;">Factory &amp; product standards</h2>
+      <p style="margin: 0 auto; font-size: 16px; line-height: 1.6; color: rgba(20,24,21,0.62); max-width: 60ch;">Every product is held to the highest standards of safety, hygiene, and responsible manufacturing.</p>
+    </div>
+    <div data-reveal="1" style="display: flex; flex-wrap: wrap; justify-content: center; gap: 12px;">
+      <sc-for list="{{ certs }}" as="cert" hint-placeholder-count="6">
+        <span style="border: 1px solid rgba(20,24,21,0.16); border-radius: 999px; padding: 12px 24px; font-size: 15px; font-weight: 600; letter-spacing: 0.04em; background: var(--card); transition: background 0.25s ease, color 0.25s ease, border-color 0.25s ease;" style-hover="background: var(--ink); color: var(--paper); border-color: var(--ink);">{{ cert }}</span>
+      </sc-for>
+    </div>
+  </section>
+
+  <!-- ===== FAQ ===== -->
+  <section id="faq" style="max-width: 960px; margin: 0 auto; padding: 110px 40px 0;">
+    <h2 data-reveal="0" style="margin: 0 0 36px; font-size: clamp(30px, 3.2vw, 44px); font-weight: 700; font-stretch: 112%;">Frequently asked questions</h2>
+    <div style="display: flex; flex-direction: column; gap: 12px;">
+      <sc-for list="{{ faqs }}" as="faq" hint-placeholder-count="5">
+        <div data-reveal="{{ faq.delay }}" style="background: var(--card); border: 1px solid rgba(20,24,21,0.08); border-radius: 18px; overflow: hidden;">
+          <button onClick="{{ faq.toggle }}" style="all: unset; cursor: pointer; display: flex; align-items: center; justify-content: space-between; gap: 20px; width: 100%; padding: 22px 26px; font-family: inherit; font-size: 17px; font-weight: 600; box-sizing: border-box;" style-hover="color: var(--accent);">
+            <span>{{ faq.q }}</span>
+            <span style="font-size: 13px; display: inline-block; transform: {{ faq.chev }}; transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);">▼</span>
+          </button>
+          <div style="max-height: {{ faq.maxH }}; opacity: {{ faq.opacity }}; overflow: hidden; transition: max-height 0.4s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.3s ease;">
+            <p style="margin: 0; padding: 0 26px 24px; font-size: 15px; line-height: 1.6; color: rgba(20,24,21,0.66);">{{ faq.a }}</p>
+          </div>
+        </div>
+      </sc-for>
+    </div>
+  </section>
+
+  <!-- ===== Contact CTA + footer ===== -->
+  <footer id="contact" style="margin-top: 120px; background: var(--ink); color: var(--paper); border-radius: 32px 32px 0 0;">
+    <div style="max-width: 1440px; margin: 0 auto; padding: 88px 40px 48px;">
+      <div data-reveal="0" style="display: flex; align-items: flex-end; justify-content: space-between; gap: 40px; flex-wrap: wrap; padding-bottom: 64px; border-bottom: 1px solid rgba(243,240,233,0.14);">
+        <h2 style="margin: 0; font-size: clamp(34px, 4vw, 60px); line-height: 1.05; font-weight: 700; font-stretch: 112%; max-width: 18ch; text-wrap: pretty;">Set the standard for packaging in your industry.</h2>
+        <a href="mailto:info@printopack.com.sa" style="background: var(--accent); color: #F6F3EC; padding: 18px 38px; border-radius: 999px; font-size: 17px; font-weight: 600; transition: transform 0.25s ease, filter 0.25s ease;" style-hover="transform: translateY(-3px); filter: brightness(1.12); color: #F6F3EC;">Request a Quote</a>
+      </div>
+      <div style="display: flex; justify-content: space-between; gap: 40px; flex-wrap: wrap; padding: 48px 0 0;">
+        <div style="display: flex; flex-direction: column; gap: 12px;">
+          <span style="font-size: 20px; font-weight: 800; letter-spacing: 0.14em; font-stretch: 115%;">PRINTOPACK</span>
+          <span style="font-size: 14px; color: rgba(243,240,233,0.6); max-width: 36ch; line-height: 1.55;">Flexible packaging solutions for a diverse global marketplace. Jeddah, Kingdom of Saudi Arabia.</span>
+        </div>
+        <nav style="display: flex; gap: 56px; font-size: 14px;">
+          <div style="display: flex; flex-direction: column; gap: 10px;">
+            <span style="font-weight: 700; letter-spacing: 0.08em; font-size: 12px; color: rgba(243,240,233,0.5);">SOLUTIONS</span>
+            <a href="#solutions" style="color: rgba(243,240,233,0.8);" style-hover="color: #F6F3EC;">Food &amp; Beverage</a>
+            <a href="#solutions" style="color: rgba(243,240,233,0.8);" style-hover="color: #F6F3EC;">Pharma &amp; Healthcare</a>
+            <a href="#solutions" style="color: rgba(243,240,233,0.8);" style-hover="color: #F6F3EC;">Personal &amp; Home Care</a>
+          </div>
+          <div style="display: flex; flex-direction: column; gap: 10px;">
+            <span style="font-weight: 700; letter-spacing: 0.08em; font-size: 12px; color: rgba(243,240,233,0.5);">COMPANY</span>
+            <a href="#about" style="color: rgba(243,240,233,0.8);" style-hover="color: #F6F3EC;">About</a>
+            <a href="#capabilities" style="color: rgba(243,240,233,0.8);" style-hover="color: #F6F3EC;">Capabilities</a>
+            <a href="#faq" style="color: rgba(243,240,233,0.8);" style-hover="color: #F6F3EC;">FAQs</a>
+          </div>
+        </nav>
+      </div>
+      <div style="display: flex; justify-content: space-between; gap: 24px; flex-wrap: wrap; margin-top: 56px; font-size: 13px; color: rgba(243,240,233,0.45);">
+        <span>Printopack 2026. All rights reserved.</span>
+        <span>Privacy Policy · Terms &amp; Conditions</span>
+      </div>
+    </div>
+  </footer>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;: {&quot;width&quot;: 1600, &quot;height&quot;: 1000}, &quot;accentColor&quot;: {&quot;editor&quot;: &quot;color&quot;, &quot;default&quot;: &quot;#1E5A46&quot;, &quot;options&quot;: [&quot;#1E5A46&quot;, &quot;#153E63&quot;, &quot;#8A3324&quot;, &quot;#20242A&quot;], &quot;tsType&quot;: &quot;string&quot;, &quot;section&quot;: &quot;Theme&quot;}, &quot;showLoader&quot;: {&quot;editor&quot;: &quot;boolean&quot;, &quot;default&quot;: true, &quot;tsType&quot;: &quot;boolean&quot;, &quot;section&quot;: &quot;Motion&quot;}}">
+class Component extends DCLogic {
+  state = { menuOpen: false, openFaq: 0 };
+
+  componentDidMount() {
+    // Apply accent tweak to CSS variable so the whole page recolors at once
+    this.applyAccent();
+    // Scroll-triggered reveals — scroll/resize driven (IO is unreliable in some embeds)
+    const pending = new Set(document.querySelectorAll('[data-reveal]'));
+    pending.forEach((el) => {
+      el.style.opacity = '0';
+      el.style.transform = 'translateY(30px)';
+      el.style.transition = 'opacity 0.8s cubic-bezier(0.22,1,0.36,1), transform 0.8s cubic-bezier(0.22,1,0.36,1)';
+    });
+    const reveal = (el) => {
+      const delay = parseInt(el.getAttribute('data-reveal') || '0', 10) * 110;
+      setTimeout(() => {
+        el.style.opacity = '1';
+        el.style.transform = 'translateY(0)';
+      }, delay);
+      pending.delete(el);
+    };
+    let ticking = false;
+    const check = () => {
+      ticking = false;
+      const vh = window.innerHeight || document.documentElement.clientHeight;
+      pending.forEach((el) => {
+        const r = el.getBoundingClientRect();
+        if (r.top < vh * 0.92 && r.bottom > 0) reveal(el);
+      });
+      if (!pending.size) detach();
+    };
+    const onScroll = () => {
+      if (!ticking) { ticking = true; requestAnimationFrame(check); }
+    };
+    const detach = () => {
+      window.removeEventListener('scroll', onScroll, true);
+      window.removeEventListener('resize', onScroll);
+      if (this._revealInterval) { clearInterval(this._revealInterval); this._revealInterval = null; }
+    };
+    this._detachReveal = detach;
+    window.addEventListener('scroll', onScroll, true);
+    window.addEventListener('resize', onScroll);
+    // Safety net: periodic recheck catches missed events; stops once all revealed
+    this._revealInterval = setInterval(check, 800);
+    check();
+  }
+
+  componentDidUpdate() { this.applyAccent(); }
+  componentWillUnmount() { if (this._detachReveal) this._detachReveal(); }
+
+  applyAccent() {
+    const el = (this.refs && this.refs.root) || document.querySelector('[data-screen-label="Printopack Homepage"]');
+    if (el) el.style.setProperty('--accent', this.props.accentColor ?? '#1E5A46');
+  }
+
+  renderVals() {
+    const openFaq = this.state.openFaq;
+    const faqsData = [
+      { q: 'What types of packaging do you offer?', a: 'We supply a full range of flexible packaging — printed roll stock, laminates, pouches, and lidding films — from ready formats to fully bespoke branded structures.' },
+      { q: 'Which industries do you serve?', a: 'Food and beverage, pharmaceutical and healthcare, and personal and home care brands, from regional producers to multinational names.' },
+      { q: 'Do you deliver internationally?', a: 'Yes. Alongside nationwide delivery across Saudi Arabia, we serve export customers throughout the GCC and a diverse global marketplace.' },
+      { q: 'How do I place an order?', a: 'Contact our team with your specifications for a quotation. For custom structures or printed designs, our packaging engineers will guide you from artwork to delivery.' },
+      { q: 'Do you offer sustainable options?', a: 'Yes. We offer recyclable mono-material structures, down-gauged films, and packaging with post-consumer recycled content.' }
+    ];
+    return {
+      showLoader: this.props.showLoader ?? true,
+      menuOpen: this.state.menuOpen,
+      chevTransform: this.state.menuOpen ? 'rotate(180deg)' : 'rotate(0deg)',
+      openMenu: () => this.setState({ menuOpen: true }),
+      closeMenu: () => this.setState({ menuOpen: false }),
+      industries: [
+        { delay: 0, slotId: 'ind-food', title: 'Food & Beverage', placeholder: 'Drop image — snack pouches / beverage packs', body: 'Keep products fresh for longer with high-barrier films and pouches that minimise waste — and print that makes your brand unmissable on the shelf.' },
+        { delay: 1, slotId: 'ind-pharma', title: 'Pharma & Healthcare', placeholder: 'Drop image — pharma blister / sachet packaging', body: 'Compliant, tamper-evident flexible formats manufactured under strict hygiene standards, from sachets to medical-grade laminates.' },
+        { delay: 2, slotId: 'ind-care', title: 'Personal & Home Care', placeholder: 'Drop image — detergent / personal care pouches', body: 'Durable, vivid packaging for everyday essentials — refill pouches, wrappers, and films engineered for shelf impact and performance.' }
+      ],
+      capabilities: [
+        { delay: 0, slotId: 'cap-pouches', title: 'Stand-Up Pouches', placeholder: 'Drop image — stand-up pouches', body: 'Resealable doypacks with zippers, spouts, and windows in any size.' },
+        { delay: 1, slotId: 'cap-rollstock', title: 'Laminated Roll Stock', placeholder: 'Drop image — printed roll stock', body: 'Multi-layer barrier laminates for VFFS and HFFS filling lines.' },
+        { delay: 2, slotId: 'cap-printing', title: 'Rotogravure Printing', placeholder: 'Drop image — printing press', body: 'Up to 10-colour photographic-quality print with tight registration.' },
+        { delay: 3, slotId: 'cap-lidding', title: 'Lidding & Sealing Films', placeholder: 'Drop image — lidding films on trays', body: 'Peelable and resealable lidding for trays, cups, and ready meals.' }
+      ],
+      certs: ['ISO 9001', 'ISO 22000', 'FSSC 22000', 'BRCGS', 'SFDA', 'HALAL', 'GMP', 'SEDEX'],
+      faqs: faqsData.map((f, i) => ({
+        ...f,
+        delay: i,
+        toggle: () => this.setState({ openFaq: openFaq === i ? -1 : i }),
+        chev: openFaq === i ? 'rotate(180deg)' : 'rotate(0deg)',
+        maxH: openFaq === i ? '220px' : '0px',
+        opacity: openFaq === i ? 1 : 0
+      }))
+    };
+  }
+}
+</script>
+</body>
+</html>

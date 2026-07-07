@@ -1,0 +1,5 @@
+# local backups & debug artifacts
+index.backup.html
+model_original.glb
+_debug_*.png
+_patch*.py

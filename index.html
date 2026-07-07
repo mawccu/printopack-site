@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Printopack — Packaging that Performs</title>
+<meta name="description" content="Printopack — flexible packaging printed for brands that lead. Rotogravure printing, high-barrier laminates, stand-up pouches and mono-material films.">
+
+<!-- Fonts: Hanken Grotesk (closest free substitute for Magnetik) -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@1&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@300;400;600&display=swap" rel="stylesheet">
+
+<!-- Motion stack: GSAP + ScrollTrigger + Lenis (matches the real site) -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"></script>
+<!-- 3D model viewer for the floating hero render -->
+<script type="module" src="https://cdn.jsdelivr.net/npm/@google/model-viewer@3.5.0/dist/model-viewer.min.js"></script>
+
+<link rel="canonical" href="https://www.printopack.com.sa/">
+<meta name="theme-color" content="#0e2042">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+<link rel="manifest" href="manifest.webmanifest">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Printopack">
+<meta property="og:title" content="Printopack — Packaging that Performs">
+<meta property="og:description" content="Flexible packaging printed for brands that lead. Rotogravure printing, high-barrier laminates and converted packaging from Jeddah, Saudi Arabia.">
+<meta property="og:image" content="https://www.printopack.com.sa/assets/hero.jpg">
+<meta property="og:url" content="https://www.printopack.com.sa/">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preload" as="image" href="assets/hero.jpg" fetchpriority="high">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Organization","name":"Printopack — Saudi Modern Packaging Factory Co. Ltd.","url":"https://www.printopack.com.sa/","logo":"https://www.printopack.com.sa/assets/icon-512.png","foundingDate":"1997","address":{"@type":"PostalAddress","streetAddress":"Industrial Area 5, Unit 10, 8508","addressLocality":"Jeddah","postalCode":"22428","addressCountry":"SA"},"contactPoint":{"@type":"ContactPoint","telephone":"+966126081074","contactType":"sales","email":"info@printopack.com.sa"},"sameAs":["https://facebook.com/www.printopack.com.sa","https://www.linkedin.com/company/80331793/"]}
+</script>
+<link rel="stylesheet" href="assets/site.css">
+</head>
+<body>
+<a class="skip-link" href="#top">Skip to content</a>
+
+<!-- ===================== LUXURY OVERLAYS ===================== -->
+<div class="grain"></div>
+<div class="scroll-progress" id="scrollProgress"></div>
+<div class="cursor-dot" id="cursorDot"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<!-- ===================== PRELOADER ===================== -->
+<div class="preloader" id="preloader">
+  <div class="pre-icon" id="preIcon"></div>
+  <div class="pre-label" id="preLabel">PRINTOPACK</div>
+</div>
+
+<!-- ===================== HEADER ===================== -->
+<header>
+  <div class="nav">
+    <div class="nav-cluster">
+      <div class="nav-account">
+        <a href="https://printopack.azurewebsites.net/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 3.6-6.5 8-6.5s8 2.5 8 6.5"/></svg>Customer Login</a>
+        <a href="#" class="admin-login"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 3.6-6.5 8-6.5s8 2.5 8 6.5"/></svg>Admin</a>
+      </div>
+      <a href="#top" class="brand"><img src="assets/logo_nav.png" alt="Printopack — Saudi Modern Packaging Factory Co. Ltd." class="brand-logo"></a>
+    </div>
+    <nav class="nav-links">
+      <a href="#solutions" data-mega="solutions">Solutions</a>
+      <a href="#about" data-mega="company">Company</a>
+      <a href="#capabilities" data-mega="capabilities">Capabilities</a>
+      <a href="categories.html">Products</a>
+      <a href="news.html">News</a>
+      <a href="#faq">FAQs</a>
+    </nav>
+    <a href="#contact" class="btn brand">Request a Quote</a>
+  </div>
+  <div class="mega" id="mega">
+    <div class="mega-inner">
+      <div class="wrap mega-panels">
+        <div class="mega-panel" data-panel="solutions">
+          <a class="mi" href="#solutions" style="--i:0;"><h5>Snacks &amp; Confectionery</h5><p>High-barrier films and bags for chips, chocolates, bakery, candy and ice cream.</p></a>
+          <a class="mi" href="#solutions" style="--i:1;"><h5>Beverage &amp; Dairy</h5><p>PET &amp; glass bottle labels, lids, sleeves and hot-fill liquid packaging.</p></a>
+          <a class="mi" href="#solutions" style="--i:2;"><h5>Home &amp; Everyday</h5><p>Tissue wraps, pet-food bags, and packaging for rice, pasta and spices.</p></a>
+          <div class="mega-rail"><span class="big">20<em>+</em></span><small>Product categories</small></div>
+        </div>
+        <div class="mega-panel" data-panel="company">
+          <a class="mi" href="#about" style="--i:0;"><h5>About Printopack</h5><p>Packaging pioneers since 1997, printing from our Jeddah facility for the region and beyond.</p></a>
+          <a class="mi" href="#clients" style="--i:1;"><h5>Our clients</h5><p>Trusted by leading food, beverage and consumer brands across 26+ countries.</p></a>
+          <a class="mi" href="#standards" style="--i:2;"><h5>Standards &amp; certificates</h5><p>ISO, FSSC, BRCGS, SFDA, HALAL — every run held to the highest standards.</p></a>
+          <div class="mega-rail"><span class="big">1997</span><small>Pioneers since</small></div>
+        </div>
+        <div class="mega-panel" data-panel="capabilities">
+          <a class="mi" href="#capabilities" style="--i:0;"><h5>Rotogravure printing</h5><p>Photographic-quality, multi-colour print with tight registration.</p></a>
+          <a class="mi" href="#capabilities" style="--i:1;"><h5>Cylinder engraving</h5><p>In-house engraved cylinders — from artwork to press, faster.</p></a>
+          <a class="mi" href="#contact" style="--i:2;"><h5>Bag making &amp; finishing</h5><p>Converted bags, pouches, punching and finishing. Request full specs.</p></a>
+          <div class="mega-rail"><span class="big">In-house</span><small>End to end</small></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+<div class="page-dim" id="pageDim"></div>
+
+<main id="top">
+
+<!-- ===================== HERO ===================== -->
+<section class="section hero" data-reveal>
+  <canvas id="heroWaves" class="hero-waves"></canvas>
+  <div class="hero-glow"></div>
+  <model-viewer id="heroModel" class="hero-model"
+    src="model.glb" alt="Printopack packaging render"
+    camera-orbit="-60deg 78deg 115%" camera-target="auto 138m auto" field-of-view="30deg"
+    interaction-prompt="none" environment-image="neutral"
+    shadow-intensity="1.1" shadow-softness="0.8" exposure="1.18" tone-mapping="aces" loading="eager" reveal="auto"></model-viewer>
+  <div class="wrap">
+    <span class="kicker hero-kicker" data-rise><i>Est. 1997</i>Saudi Modern Packaging Factory Co. Ltd.</span>
+    <h1 data-split>Packaging that performs. Printed for brands that lead.</h1>
+    <div class="hero-stage">
+      <div class="media hero-media" data-media>
+        <div class="media-inner" data-parallax="0.1">
+          <div class="slot"><img src="assets/hero.jpg" alt="Printopack branded flexible packaging range" loading="eager"></div>
+        </div>
+        <div class="hero-blur"></div>
+      </div>
+      <div class="hero-cards">
+        <a href="#solutions" class="hero-card" data-rise>
+          <h3>Snacks &amp; Confectionery</h3>
+          <div class="hc-reveal"><div class="hc-text">
+            <span class="line"><span class="line-inner">Chips, chocolates, bakery,</span></span>
+            <span class="line"><span class="line-inner">candy &amp; ice cream films.</span></span>
+          </div>
+          <span class="hc-border"></span>
+          <div class="hc-link">
+            <span class="hc-link-text"><span class="hc-link-inner">Tell me more</span></span>
+            <span class="hc-aw"><span class="hc-arrows"><span class="hc-arrow">&rarr;</span><span class="hc-arrow">&rarr;</span></span></span>
+          </div></div>
+        </a>
+        <a href="#solutions" class="hero-card" data-rise>
+          <h3>Beverage &amp; Dairy</h3>
+          <div class="hc-reveal"><div class="hc-text">
+            <span class="line"><span class="line-inner">PET &amp; glass bottle labels,</span></span>
+            <span class="line"><span class="line-inner">lids &amp; hot-fill packaging.</span></span>
+          </div>
+          <span class="hc-border"></span>
+          <div class="hc-link">
+            <span class="hc-link-text"><span class="hc-link-inner">Tell me more</span></span>
+            <span class="hc-aw"><span class="hc-arrows"><span class="hc-arrow">&rarr;</span><span class="hc-arrow">&rarr;</span></span></span>
+          </div></div>
+        </a>
+        <a href="#solutions" class="hero-card" data-rise>
+          <h3>Home &amp; Everyday</h3>
+          <div class="hc-reveal"><div class="hc-text">
+            <span class="line"><span class="line-inner">Tissue wraps, pet-food bags,</span></span>
+            <span class="line"><span class="line-inner">rice, pasta &amp; spices.</span></span>
+          </div>
+          <span class="hc-border"></span>
+          <div class="hc-link">
+            <span class="hc-link-text"><span class="hc-link-inner">Tell me more</span></span>
+            <span class="hc-aw"><span class="hc-arrows"><span class="hc-arrow">&rarr;</span><span class="hc-arrow">&rarr;</span></span></span>
+          </div></div>
+        </a>
+      </div>
+    </div>
+    <div class="scroll-cue" data-rise><i></i><span>Scroll</span></div>
+  </div>
+</section>
+
+<!-- ===================== MARQUEE BAND ===================== -->
+<section class="section marquee-band" data-reveal>
+  <div class="marquee-media">
+    <div class="media zoom-media" data-media>
+      <div class="media-inner" data-parallax="0.08">
+        <div class="slot"><img src="assets/solvent.jpg" alt="Printopack solvent recovery plant" loading="lazy"></div>
+      </div>
+    </div>
+  </div>
+  <div class="marquee" data-marquee data-speed="90">
+    <div class="marquee-inner">
+      <span>Chips &amp; Snacks <i class="dot"></i></span>
+      <span>Chocolates <i class="dot"></i></span>
+      <span>Bakery Products <i class="dot"></i></span>
+      <span>Candy <i class="dot"></i></span>
+      <span>Coffee &amp; Tea <i class="dot"></i></span>
+      <span>Ice Cream <i class="dot"></i></span>
+      <span>Bottle Labels <i class="dot"></i></span>
+      <span>Lids <i class="dot"></i></span>
+      <span>Rice &amp; Pasta <i class="dot"></i></span>
+      <span>Spices <i class="dot"></i></span>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== SHOP CTA BAND ===================== -->
+<section class="section shop-cta" data-reveal>
+  <div class="wrap">
+    <h2 data-split>Where technology meets vision.</h2>
+    <a href="#capabilities" class="btn brand" data-rise>See what we make &rarr;</a>
+  </div>
+</section>
+
+<!-- ===================== SOLUTIONS ACCORDION ===================== -->
+<section id="solutions" class="section solutions" data-reveal>
+  <div class="wrap">
+    <div class="sol-bg media" data-media>
+      <div class="media-inner"><div class="slot"><img src="assets/factory.jpg" alt="Printopack rotogravure press line in Jeddah" loading="lazy"></div></div>
+    </div>
+    <div class="sol-list">
+      <div class="sol-card" data-sol>
+        <h3>Snacks &amp; Confectionery</h3>
+        <div class="sol-body"><p>High-barrier printed films and bags for chips, chocolates, bakery, candy, nuts and ice cream — keeping every product fresh with print that stands out on the shelf.</p></div>
+        <div class="sol-divider"></div>
+        <div class="sol-more"><span>Tell me more</span><span class="arrow">&rarr;</span></div>
+      </div>
+      <div class="sol-card" data-sol>
+        <h3>Beverage &amp; Dairy</h3>
+        <div class="sol-body"><p>PET and glass bottle labels, lids, jar and bottle sleeves, and hot-fill liquid packaging — vivid rotogravure print engineered for filling lines.</p></div>
+        <div class="sol-divider"></div>
+        <div class="sol-more"><span>Tell me more</span><span class="arrow">&rarr;</span></div>
+      </div>
+      <div class="sol-card" data-sol>
+        <h3>Home &amp; Everyday Essentials</h3>
+        <div class="sol-body"><p>Soft and wet tissue wraps, pet-food bags, and packaging for rice, pasta, sugar and spices — durable structures for daily-use products.</p></div>
+        <div class="sol-divider"></div>
+        <div class="sol-more"><span>Tell me more</span><span class="arrow">&rarr;</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== ABOUT / INFO ===================== -->
+<section id="about" class="section info" data-reveal>
+  <div class="wrap info-grid">
+    <div>
+      <span class="kicker" data-rise><i>01</i>Company</span>
+      <h2 data-split>Committed to excellence, always innovating</h2>
+      <p class="info-lead" data-rise>Packaging pioneers since 1997. From our Jeddah facility, every structure, laminate and print run is refined until it meets the Printopack standard — then delivered on time, every time.</p>
+      <a href="#contact" class="btn" data-rise>About us</a>
+    </div>
+    <div>
+      <div class="info-item draw-line" data-rise>
+        <h4>OUR MISSION</h4>
+        <p>To provide creative, compliant flexible packaging with industry-leading customer service to food, beverage, pharmaceutical, and consumer brands across a diverse global marketplace.</p>
+      </div>
+      <div class="info-item draw-line" data-rise>
+        <h4>OUR VISION</h4>
+        <p>To be the region's trusted, industry-leading packaging partner — known for ethical practice, reliable supply, and award-winning innovation.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== STATS ===================== -->
+<section class="section stats" data-reveal>
+  <div class="wrap">
+    <div class="stats-grid">
+      <div class="stat" data-rise>
+        <div class="stat-num"><span class="num" data-count="6">0</span></div>
+        <span class="stat-label">Regional offices</span>
+      </div>
+      <div class="stat" data-rise>
+        <div class="stat-num"><span class="num" data-count="26">0</span><span class="suffix">+</span></div>
+        <span class="stat-label">Countries served</span>
+      </div>
+      <div class="stat" data-rise>
+        <div class="stat-num"><span class="num" data-count="25">0</span><span class="suffix">+</span></div>
+        <span class="stat-label">Years of printing</span>
+      </div>
+      <div class="stat" data-rise>
+        <div class="stat-num"><span class="num" data-count="400">0</span><span class="suffix">+</span></div>
+        <span class="stat-label">Team members</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== PRODUCTS / CAPABILITIES ===================== -->
+<section id="capabilities" class="section products" data-reveal>
+  <div class="wrap">
+    <div class="prod-head">
+      <span class="kicker" data-rise><i>02</i>What we make</span>
+      <h2 data-split>Capabilities</h2>
+      <a href="#contact" data-rise class="uwipe" style="font-size:15px;font-weight:600;padding-bottom:2px;">Request full specifications &rarr;</a>
+    </div>
+    <div class="prod-grid">
+      <div class="prod-card" data-rise>
+        <div class="media"><div class="media-inner"><div class="slot"><img src="assets/rotogravure.jpg" alt="Rotogravure printing press" loading="lazy"></div></div></div>
+        <div class="prod-info"><h3>Rotogravure Printing</h3><p>Photographic-quality, multi-colour print with tight registration at production speed.</p></div>
+      </div>
+      <div class="prod-card" data-rise>
+        <div class="media"><div class="media-inner"><div class="slot"><img src="assets/engraving.jpg" alt="Cylinder engraving" loading="lazy"></div></div></div>
+        <div class="prod-info"><h3>Cylinder Engraving</h3><p>In-house engraved cylinders for precise, repeatable print — from artwork to press, faster.</p></div>
+      </div>
+      <div class="prod-card" data-rise>
+        <div class="media"><div class="media-inner"><div class="slot"><img src="assets/bagging.jpg" alt="Bagging machine" loading="lazy"></div></div></div>
+        <div class="prod-info"><h3>Bag Making</h3><p>Converted bags and pouches in every format and measurement your line requires.</p></div>
+      </div>
+      <div class="prod-card" data-rise>
+        <div class="media"><span class="prod-badge">IN-HOUSE</span><div class="media-inner"><div class="slot"><img src="assets/punching.jpg" alt="Punching machine" loading="lazy"></div></div></div>
+        <div class="prod-info"><h3>Punching &amp; Finishing</h3><p>Precision punching and finishing with solvent recovery for responsible production.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== CUSTOM SOLUTIONS CTA (green) ===================== -->
+<section id="custom" class="section custom" data-reveal>
+  <div class="wrap custom-grid">
+    <div>
+      <span class="kicker on-dark" data-rise><i>03</i>Custom solutions</span>
+      <h2 data-split>Brands that thrive invest in custom-designed packaging. Let's bring your vision to life.</h2>
+    </div>
+    <div class="custom-media">
+      <div class="media zoom-media" data-media>
+        <div class="media-inner" data-parallax="0.06"><div class="slot green"><img src="assets/custom.png" alt="Custom printed snack pouch" loading="lazy" style="object-fit:contain;padding:24px;"></div></div>
+      </div>
+    </div>
+  </div>
+  <a href="#contact" class="arrow-marquee" data-marquee data-speed="80">
+    <div class="marquee-inner">
+      <span>Get in touch to find out &nearr;</span><span class="muted">Not sure what's possible?</span>
+      <span>Get in touch to find out &nearr;</span><span class="muted">Not sure what's possible?</span>
+      <span>Get in touch to find out &nearr;</span><span class="muted">Not sure what's possible?</span>
+    </div>
+  </a>
+</section>
+
+<!-- ===================== STANDARDS ===================== -->
+<section id="standards" class="section standards" data-reveal>
+  <div class="wrap">
+    <div class="head">
+      <span class="kicker" data-rise><i>04</i>Standards</span>
+      <h2 data-split>Factory &amp; product standards</h2>
+      <p data-rise>Every product is held to the highest standards of safety, hygiene, and responsible manufacturing.</p>
+    </div>
+    <div class="cert-row">
+      <span class="cert" data-rise>ISO 9001</span>
+      <span class="cert" data-rise>ISO 22000</span>
+      <span class="cert" data-rise>FSSC 22000</span>
+      <span class="cert" data-rise>BRCGS</span>
+      <span class="cert" data-rise>SFDA</span>
+      <span class="cert" data-rise>HALAL</span>
+      <span class="cert" data-rise>GMP</span>
+      <span class="cert" data-rise>SEDEX</span>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== GLOBAL MAP ===================== -->
+<section id="map" class="section gmap" data-reveal>
+  <div class="wrap">
+    <span class="kicker" data-rise><i>05</i>Global reach</span>
+    <h2 data-split>From Jeddah to the world.</h2>
+    <p class="gmap-sub" data-rise>Seven offices. 26+ countries served. One standard of print.</p>
+    <div class="gmap-stage" id="gmapStage" data-rise>
+      <img class="gmap-world" src="assets/worldmap.svg?v=light" alt="Printopack regional offices map" loading="eager">
+      <div class="gmap-grid"></div>
+      <div class="gnode hub" style="--x:72%;--y:43.9%;" data-name="Jeddah — HQ"></div>
+      <div class="gnode" style="--x:73.9%;--y:30.8%;" data-name="Kuwait"></div>
+      <div class="gnode" style="--x:63.2%;--y:25.8%;" data-name="Jordan"></div>
+      <div class="gnode flip" style="--x:56.7%;--y:37.7%;" data-name="Egypt"></div>
+      <div class="gnode" style="--x:56.7%;--y:64.1%;" data-name="Sudan"></div>
+      <div class="gnode" style="--x:35.3%;--y:19.6%;" data-name="Tunisia"></div>
+      <div class="gnode flip" style="--x:27.3%;--y:34%;" data-name="Algeria"></div>
+      <span class="gmap-note">+26 countries served</span>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== OUR CLIENTS ===================== -->
+<section id="clients" class="section clients" data-reveal>
+  <div class="wrap">
+    <div class="head">
+      <span class="kicker" data-rise><i>06</i>Clients</span>
+      <h2 data-split>Our clients</h2>
+      <p data-rise>Trusted by leading food, beverage and consumer brands.</p>
+    </div>
+  </div>
+  <div class="marquee" data-marquee data-speed="55">
+    <div class="marquee-inner">
+      <span class="client-logo"><img src="assets/clients/client00.jpg" alt="Client logo"></span>
+      <span class="client-logo"><img src="assets/clients/client01.jpg" alt="Client logo"></span>
+      <span class="client-logo"><img src="assets/clients/client02.png" alt="Client logo"></span>
+      <span class="client-logo"><img src="assets/clients/client03.jpg" alt="Client logo"></span>
+      <span class="client-logo"><img src="assets/clients/client04.jpg" alt="Client logo"></span>
+      <span class="client-logo"><img src="assets/clients/client05.jpg" alt="Client logo"></span>
+      <span class="client-logo"><img src="assets/clients/client06.jpg" alt="Client logo"></span>
+      <span class="client-logo"><img src="assets/clients/client07.jpg" alt="Client logo"></span>
+      <span class="client-logo"><img src="assets/clients/client08.jpg" alt="Client logo"></span>
+      <span class="client-logo"><img src="assets/clients/client09.jpg" alt="Client logo"></span>
+      <span class="client-logo"><img src="assets/clients/client10.jpg" alt="Client logo"></span>
+      <span class="client-logo"><img src="assets/clients/client11.jpg" alt="Client logo"></span>
+      <span class="client-logo"><img src="assets/clients/client12.png" alt="Client logo"></span>
+      <span class="client-logo"><img src="assets/clients/client13.jpg" alt="Client logo"></span>
+      <span class="client-logo"><img src="assets/clients/client14.jpg" alt="Client logo"></span>
+      <span class="client-logo"><img src="assets/clients/client15.jpg" alt="Client logo"></span>
+      <span class="client-logo"><img src="assets/clients/client16.png" alt="Client logo"></span>
+      <span class="client-logo"><img src="assets/clients/client17.jpg" alt="Client logo"></span>
+      <span class="client-logo"><img src="assets/clients/client18.jpg" alt="Client logo"></span>
+      <span class="client-logo"><img src="assets/clients/client19.jpg" alt="Client logo"></span>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== FAQ ===================== -->
+<section id="faq" class="section faq" data-reveal>
+  <div class="wrap">
+    <span class="kicker" data-rise><i>07</i>FAQ</span>
+    <h2 data-split>Frequently asked questions</h2>
+    <div class="faq-list">
+      <div class="faq-item draw-line open" data-faq>
+        <div class="faq-q"><span>What types of packaging do you offer?</span><span class="faq-plus">+</span></div>
+        <div class="faq-a"><p>We supply a full range of flexible packaging — printed roll stock, laminates, pouches, and lidding films — from ready formats to fully bespoke branded structures.</p></div>
+      </div>
+      <div class="faq-item draw-line" data-faq>
+        <div class="faq-q"><span>Which industries do you serve?</span><span class="faq-plus">+</span></div>
+        <div class="faq-a"><p>Food and beverage, pharmaceutical and healthcare, and personal and home care brands, from regional producers to multinational names.</p></div>
+      </div>
+      <div class="faq-item draw-line" data-faq>
+        <div class="faq-q"><span>Do you deliver internationally?</span><span class="faq-plus">+</span></div>
+        <div class="faq-a"><p>Yes. Alongside nationwide delivery across Saudi Arabia, we serve export customers throughout the GCC and a diverse global marketplace.</p></div>
+      </div>
+      <div class="faq-item draw-line" data-faq>
+        <div class="faq-q"><span>How do I place an order?</span><span class="faq-plus">+</span></div>
+        <div class="faq-a"><p>Contact our team with your specifications for a quotation. For custom structures or printed designs, our packaging engineers will guide you from artwork to delivery.</p></div>
+      </div>
+      <div class="faq-item draw-line" data-faq>
+        <div class="faq-q"><span>Do you offer sustainable options?</span><span class="faq-plus">+</span></div>
+        <div class="faq-a"><p>Yes. We offer recyclable mono-material structures, down-gauged films, and packaging with post-consumer recycled content.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ===================== FOOTER (green) ===================== -->
+<footer id="contact" data-reveal>
+  <div class="footer-in">
+    <div class="footer-top">
+      <h2 data-split>Set the standard for packaging in your industry.</h2>
+      <a href="mailto:info@printopack.com.sa" class="btn brand" data-rise>Request a Quote</a>
+    </div>
+    <div class="footer-cards">
+      <a href="tel:+966126081074" class="footer-card" data-rise><h3>Call us</h3><span>+966 12 608 1074 &nbsp;·&nbsp; Fax +966 12 608 1082</span></a>
+      <a href="mailto:info@printopack.com.sa" class="footer-card" data-rise><h3>Email us</h3><span>info@printopack.com.sa &nbsp;·&nbsp; 9:00 AM – 5:00 PM</span></a>
+      <a href="#top" class="footer-card" data-rise><h3>Visit us</h3><span>Industrial Area 5, Unit 10, 8508, Jeddah 22428, Saudi Arabia</span></a>
+    </div>
+    <div class="footer-mark"><div>Printopack</div></div>
+    <div class="footer-legal">
+      <span>Printopack — Saudi Modern Packaging Factory Co. Ltd. 2026. All rights reserved.</span>
+      <span>Jeddah, KSA — <span id="jClock">--:--:--</span> GMT+3</span>
+      <span><a href="privacy.html" class="uwipe">Privacy Policy</a> · <a href="conditions.html" class="uwipe">Terms &amp; Conditions</a> · <a href="gallery.html" class="uwipe">Gallery</a></span>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/site.js"></script>
+</body>
+</html>

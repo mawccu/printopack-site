@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://www.printopack.com.sa/sitemap.xml
