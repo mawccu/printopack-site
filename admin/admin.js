@@ -48,9 +48,11 @@ var SEED = {
     {id:uid(),title:"Sales Account Manager",dept:"Sales",type:"Full-time",location:"Jeddah, KSA",summary:"Grow relationships with food and beverage brands across the region.",status:"draft"}
   ],
   team:[
-    {id:uid(),name:"Khalid Al-Amoudi",role:"General Manager",email:"k.amoudi@printopack.com.sa",photo:"",bio:"Leading Printopack's operations across the region for over a decade."},
+    {id:uid(),name:"Nasser Nabil",role:"General Manager",email:"n.nabil@printopack.com.sa",photo:"",bio:"Leading Printopack's operations across the region for over a decade."},
     {id:uid(),name:"Rana Saleh",role:"Head of Quality",email:"r.saleh@printopack.com.sa",photo:"",bio:"Owns our certification programme and lab standards."},
-    {id:uid(),name:"Omar Haddad",role:"Production Director",email:"o.haddad@printopack.com.sa",photo:"",bio:"Runs the Jeddah plant floor and the engraving studio."}
+    {id:uid(),name:"Omar Haddad",role:"Production Director",email:"o.haddad@printopack.com.sa",photo:"",bio:"Runs the Jeddah plant floor and the engraving studio."},
+    {id:uid(),name:"Layla Mansour",role:"Head of Sales",email:"l.mansour@printopack.com.sa",photo:"",bio:"Partners with food and beverage brands across 26+ markets."},
+    {id:uid(),name:"Ahmad Rachid",role:"IT Specialist",email:"a.rachid@printopack.com.sa",photo:"",bio:"Keeps the plant's systems, network and the customer portal running."}
   ],
   events:[
     {id:uid(),title:"Gulfood Manufacturing 2026",date:"2026-07-14",location:"Dubai World Trade Centre",description:"Visit our stand for printed pouches, high-barrier films and custom packaging."},
