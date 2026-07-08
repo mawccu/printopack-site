@@ -3,3 +3,5 @@ index.backup.html
 model_original.glb
 _debug_*.png
 _patch*.py
+.vercel
+.claude/
