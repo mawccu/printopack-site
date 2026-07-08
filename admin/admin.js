@@ -38,14 +38,27 @@ function svg(name){ return '<svg viewBox="0 0 24 24" fill="none" stroke="current
 var KEY='pp_admin_db_v1';
 var SEED = {
   news:[
-    {id:uid(),title:"Printopack renews ISO 22000 food-safety certification",titleAr:"برينتوباك تجدّد شهادة الأيزو 22000 لسلامة الغذاء",category:"Certifications",date:"2026-05-30",image:"",body:"Following a full external audit, Printopack has renewed its ISO 22000 certification for food-contact packaging.",bodyAr:"عقب تدقيق خارجي شامل، جدّدت برينتوباك شهادة الأيزو 22000 للتغليف الملامس للأغذية.",status:"published"},
-    {id:uid(),title:"New recyclable mono-material film range",titleAr:"تشكيلة جديدة من الأفلام أحادية المادة القابلة للتدوير",category:"Sustainability",date:"2026-06-18",image:"",body:"A new generation of fully recyclable mono-material laminates, keeping the same barrier performance.",bodyAr:"جيل جديد من الرقائق أحادية المادة القابلة للتدوير مع الحفاظ على أداء الحاجز نفسه.",status:"published"},
-    {id:uid(),title:"Meet Printopack at Gulfood Manufacturing 2026",titleAr:"لقاؤنا بكم في معرض جلفود للتصنيع 2026",category:"Events",date:"2026-07-02",image:"",body:"Our team will be exhibiting our latest printed pouches and high-barrier structures.",bodyAr:"سيستعرض فريقنا أحدث الأكياس المطبوعة والهياكل عالية الحاجز.",status:"draft"}
+    {id:"n53",title:"Pioneering Exceptional Packaging Solutions Since 1997: Your Path to Elevated Product Presentation",titleAr:"",category:"General Information",date:"2023-08-27",image:"https://api.printopack.com.sa/images/blog/blog_9f1a6b40-7a9b-493f-a990-fcdb58ea6bf5.png",body:"",bodyAr:"",status:"published"},
+    {id:"n52",title:"Elevate Your Beverage Brand with Our Expertise in Flexible Packaging Solutions!",titleAr:"",category:"General Information",date:"2023-08-14",image:"https://api.printopack.com.sa/images/blog/blog_e31d93b1-b765-4b92-8cd4-ebd6d24e81c2.jpeg",body:"",bodyAr:"",status:"published"},
+    {id:"n50",title:"Discover the Benefits of Flexible Packaging for Your Products: Durability, Versatility, and Eco-Friendliness",titleAr:"",category:"General Information",date:"2023-05-06",image:"https://api.printopack.com.sa/images/blog/blog_69072c0b-82e1-4c94-9b32-0f89e66ef85b.png",body:"",bodyAr:"",status:"published"},
+    {id:"n48",title:"The Future of Packaging in Saudi Arabia",titleAr:"",category:"General Information",date:"2023-02-10",image:"https://api.printopack.com.sa/images/blog/blog_a8fe458c-b888-4d19-94a2-ff0c54938d0e.jpg",body:"",bodyAr:"",status:"published"},
+    {id:"n47",title:"PVC VS PET-G Shrink Films",titleAr:"",category:"General Information",date:"2022-06-20",image:"https://api.printopack.com.sa/images/blog/blog_2f4845e0-b27f-46d3-8993-142859b6daea.jpg",body:"",bodyAr:"",status:"published"},
+    {id:"n46",title:"4 reasons why Flexible Packaging is what you need for your products?",titleAr:"",category:"General Information",date:"2022-05-18",image:"https://api.printopack.com.sa/images/blog/blog_88587afa-a77c-40cf-9358-4b0542d2d8cc.jpg",body:"",bodyAr:"",status:"published"},
+    {id:"n45",title:"Why do we need Flexible Packaging?",titleAr:"",category:"General Information",date:"2022-05-10",image:"https://api.printopack.com.sa/images/blog/blog_107f6002-3a0e-44cf-abdf-4b74d1b9e209.png",body:"",bodyAr:"",status:"published"},
+    {id:"n44",title:"Condiments & Other Foods",titleAr:"",category:"General Information",date:"2022-05-06",image:"https://api.printopack.com.sa/images/blog/blog_943d2403-83a2-4153-83cc-b0aff9cc8fc9.png",body:"",bodyAr:"",status:"published"},
+    {id:"n43",title:"Toiletries & Hygiene",titleAr:"",category:"General Information",date:"2022-04-29",image:"https://api.printopack.com.sa/images/blog/blog_950f4de0-4c8a-4107-a665-391d740fb2f4.jpg",body:"",bodyAr:"",status:"published"},
+    {id:"n42",title:"Ice Cream",titleAr:"",category:"General Information",date:"2022-04-26",image:"https://api.printopack.com.sa/images/blog/blog_4d110bb1-d4ba-4f81-9a8b-b80fe6d45368.jpeg",body:"",bodyAr:"",status:"published"},
+    {id:"n41",title:"Bread, Biscuits, and Cakes",titleAr:"",category:"General Information",date:"2022-04-21",image:"https://api.printopack.com.sa/images/blog/blog_54ea71d4-0f2c-4169-bdce-a5036f3af0fb.jpg",body:"",bodyAr:"",status:"published"},
+    {id:"n40",title:"Medical & Pharmaceutical",titleAr:"",category:"General Information",date:"2022-04-17",image:"https://api.printopack.com.sa/images/blog/blog_158f54ed-9fa9-4755-abb8-6c4b559ec096.png",body:"",bodyAr:"",status:"published"},
+    {id:"n39",title:"Crisps, Snacks & Nuts",titleAr:"",category:"General Information",date:"2022-04-17",image:"https://api.printopack.com.sa/images/blog/blog_1c9df1fb-5704-46d7-a4f6-ea9a5cab5335.png",body:"",bodyAr:"",status:"published"},
+    {id:"n38",title:"Ground Coffee & Beans",titleAr:"",category:"General Information",date:"2022-04-10",image:"https://api.printopack.com.sa/images/blog/blog_1865ed05-bda8-4a13-9db3-d334dc437892.png",body:"",bodyAr:"",status:"published"},
+    {id:"n37",title:"The mixture of high levels of raw material and energy costs and availability challenges the European Flexible Packaging industry.",titleAr:"",category:"General Information",date:"2022-04-05",image:"https://api.printopack.com.sa/images/blog/blog_790252af-10fc-4037-b7e5-36cecf627015.jpg",body:"",bodyAr:"",status:"published"},
+    {id:"n36",title:"Inhouse Cylinder Engraving",titleAr:"",category:"General Information",date:"2022-04-04",image:"https://api.printopack.com.sa/images/blog/blog_14d0811a-5f73-406f-91fa-ce5bf3cd3c88.JPG",body:"",bodyAr:"",status:"published"}
   ],
   careers:[
     {id:uid(),title:"Production Engineer",dept:"Production",type:"Full-time",location:"Jeddah, KSA",summary:"Oversee rotogravure production lines and drive continuous improvement across shifts.",status:"published"},
     {id:uid(),title:"Quality Control Specialist",dept:"Quality",type:"Full-time",location:"Jeddah, KSA",summary:"Ensure every run meets ISO, FSSC and SFDA standards through in-line and lab testing.",status:"published"},
-    {id:uid(),title:"Sales Account Manager",dept:"Sales",type:"Full-time",location:"Jeddah, KSA",summary:"Grow relationships with food and beverage brands across the region.",status:"draft"}
+    {id:uid(),title:"Sales Account Manager",dept:"Sales",type:"Full-time",location:"Jeddah, KSA",summary:"Grow relationships with food and beverage brands across the region.",status:"published"}
   ],
   team:[
     {id:uid(),name:"Nasser Nabil",role:"General Manager",email:"n.nabil@printopack.com.sa",photo:"",bio:"Leading Printopack's operations across the region for over a decade."},
@@ -60,19 +73,34 @@ var SEED = {
     {id:uid(),title:"Sustainability Open Day",date:"2026-07-30",location:"Printopack HQ, Jeddah",description:"A morning on recyclable structures and down-gauged films for our partners."}
   ],
   products:[
-    {id:uid(),name:"Chocolates",image:"../assets/categories/cat01.png",active:true,sort:1},
-    {id:uid(),name:"Chips & Snacks",image:"../assets/categories/cat00.png",active:true,sort:2},
-    {id:uid(),name:"Bakery Products",image:"../assets/categories/cat02.png",active:true,sort:3},
-    {id:uid(),name:"Coffee & Tea",image:"../assets/categories/cat15.png",active:true,sort:4},
-    {id:uid(),name:"Ice Cream",image:"../assets/categories/cat07.png",active:false,sort:5}
+    {id:"c1",name:"Chips and Snacks",image:"https://api.printopack.com.sa/images/category/category_01e1c036-2ccc-4cbe-9dd4-3461de56d246.png",active:true,sort:1},
+    {id:"c3",name:"Chocolates",image:"https://api.printopack.com.sa/images/category/category_8ef1620c-f039-4df8-bdac-ee8667aa794f.png",active:true,sort:2},
+    {id:"c4",name:"Bakery Products",image:"https://api.printopack.com.sa/images/category/category_d344c3bc-197f-451f-abbf-5a53485dea97.png",active:true,sort:3},
+    {id:"c5",name:"Candy",image:"https://api.printopack.com.sa/images/category/category_e1159d71-48fd-4508-8f51-2d5da64a9662.png",active:true,sort:4},
+    {id:"c7",name:"Breads",image:"https://api.printopack.com.sa/images/category/category_f7141cc4-7ffc-467f-9a8a-9250d2e4a5ba.png",active:true,sort:5},
+    {id:"c8",name:"PET and Glass Bottles Labels",image:"https://api.printopack.com.sa/images/category/category_d718ad4c-72b7-4f96-a354-684b13a36f40.png",active:true,sort:6},
+    {id:"c9",name:"Lids",image:"https://api.printopack.com.sa/images/category/category_99d49eaa-b98e-4502-a996-c3a546636f7d.png",active:true,sort:7},
+    {id:"c10",name:"Ice Cream",image:"https://api.printopack.com.sa/images/category/category_f6d43725-4bc6-40bb-9210-d069c7000660.png",active:true,sort:8},
+    {id:"c11",name:"Chilled Foods",image:"https://api.printopack.com.sa/images/category/category_6b2cd026-7d90-4859-8aed-9659cc71bc89.png",active:true,sort:9},
+    {id:"c12",name:"Nuts",image:"https://api.printopack.com.sa/images/category/category_18dabae6-329a-4be6-91f8-10880b49c214.png",active:true,sort:10},
+    {id:"c13",name:"Rice",image:"https://api.printopack.com.sa/images/category/category_82d865fc-c9e3-40d8-a220-2b13d0962026.png",active:true,sort:11},
+    {id:"c15",name:"Pasta",image:"https://api.printopack.com.sa/images/category/category_d3b9b047-55c7-4d7c-a083-5041e005f313.png",active:true,sort:12},
+    {id:"c16",name:"Sugar",image:"https://api.printopack.com.sa/images/category/category_7a605b52-06b1-48ee-bb39-61b315f0b8fa.png",active:true,sort:13},
+    {id:"c17",name:"Spices",image:"https://api.printopack.com.sa/images/category/category_a6214d4c-c124-46be-b0da-6a120baab1ce.png",active:true,sort:14},
+    {id:"c18",name:"Bag Measurements",image:"https://api.printopack.com.sa/images/category/category_4f783926-1edc-40aa-b6df-15c46ebb3591.png",active:true,sort:15},
+    {id:"c19",name:"Coffee and Tea",image:"https://api.printopack.com.sa/images/category/category_733491b9-78cb-40d9-94e2-5095861cb9f3.png",active:true,sort:16},
+    {id:"c20",name:"Hot Filling Liquid",image:"https://api.printopack.com.sa/images/category/category_52bf1739-4d19-4cc6-8f3d-9e711b64e1d3.png",active:true,sort:17},
+    {id:"c21",name:"Jar and Bottle Sleeves",image:"https://api.printopack.com.sa/images/category/category_e1f4cddd-aaf7-4711-b728-e557bb0da9dd.png",active:true,sort:18},
+    {id:"c22",name:"Pet Food Bags",image:"https://api.printopack.com.sa/images/category/category_e0645b3a-a284-4d24-968e-000e690352a9.png",active:true,sort:19},
+    {id:"c23",name:"Soft Tissues and Wet Tissue",image:"https://api.printopack.com.sa/images/category/category_22e2a1d6-e277-4ecf-b404-6e9f7cc47088.png",active:true,sort:20}
   ],
   pages:{
-    heroTitle:"Packaging that performs.",
+    heroTitle:"Packaging that performs. Printed for brands that lead.",
     heroSub:"Flexible packaging, printed and finished in Jeddah for brands across 26+ countries.",
-    aboutTitle:"Pioneers in flexible packaging since 1997",
-    aboutBody:"Printopack is a Saudi modern packaging factory delivering high-barrier films, printed pouches and labels to the region's leading food and beverage brands.",
+    aboutTitle:"Committed to excellence, always innovating",
+    aboutBody:"Packaging pioneers since 1997. From our Jeddah facility, every structure, laminate and print run is refined until it meets the Printopack standard, then delivered on time, every time.",
     ctaTitle:"Set the standard for packaging in your industry.",
-    statYears:"27",statCountries:"26",statCategories:"20"
+    statYears:"25",statCountries:"26",statCategories:"20"
   },
   settings:{
     companyName:"Printopack — Saudi Modern Packaging Factory Co. Ltd.",
@@ -99,7 +127,7 @@ var MODELS = {
     ],
     fields:[
       {name:"image",type:"image",label:"Cover image"},
-      {name:"category",type:"select",label:"Category",half:true,options:["Company News","Sustainability","Certifications","Events","Products"]},
+      {name:"category",type:"select",label:"Category",half:true,options:["General Information","Company News","Sustainability","Certifications","Events","Products"]},
       {name:"date",type:"date",label:"Date",half:true},
       {name:"status",type:"select",label:"Status",half:true,options:["draft","published"]},
       {name:"title",type:"text",label:"Title (English)"},
