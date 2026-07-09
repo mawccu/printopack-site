@@ -5,3 +5,6 @@ _debug_*.png
 _patch*.py
 .vercel
 .claude/
+_reply_to_nasser_draft.md
+_patch*.py
+_tmp_*
