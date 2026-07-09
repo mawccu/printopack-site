@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://www.printopack.com.sa/Printopack Home v2.dc.html</loc></url>
-  <url><loc>https://www.printopack.com.sa/Printopack Home v3.dc.html</loc></url>
-  <url><loc>https://www.printopack.com.sa/Printopack Home.dc.html</loc></url>
   <url><loc>https://www.printopack.com.sa/about.html</loc></url>
+  <url><loc>https://www.printopack.com.sa/responsibility.html</loc></url>
+  <url><loc>https://www.printopack.com.sa/quality.html</loc></url>
+  <url><loc>https://www.printopack.com.sa/departments.html</loc></url>
+  <url><loc>https://www.printopack.com.sa/team.html</loc></url>
+  <url><loc>https://www.printopack.com.sa/careers.html</loc></url>
+  <url><loc>https://www.printopack.com.sa/partners.html</loc></url>
   <url><loc>https://www.printopack.com.sa/categories.html</loc></url>
   <url><loc>https://www.printopack.com.sa/conditions.html</loc></url>
   <url><loc>https://www.printopack.com.sa/contact.html</loc></url>

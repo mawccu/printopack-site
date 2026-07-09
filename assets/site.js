@@ -8,6 +8,12 @@
 (function(){
   var hasGSAP = window.gsap && window.ScrollTrigger;
   var REDUCED = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+  // CALM MODE — client direction (Jul 2026): a still, luxurious design.
+  // No ambient motion, no scroll choreography: content fades in once and sits.
+  // Hover/press feedback stays; marquees become static rows; the 3D pouch holds
+  // its authored pose. Flip to false to restore the full cinematic system.
+  var CALM = true;
+  if(CALM){ document.documentElement.classList.add('calm'); }
   // phones never show the 3D model — don't make them download 3.5MB for nothing
   if(window.matchMedia && matchMedia('(max-width:559px)').matches){
     var _mv = document.getElementById('heroModel');
@@ -44,6 +50,67 @@
   try{ LANG = localStorage.getItem('pp-lang') || 'en'; }catch(e){}
   var AR = {
     "Home":"الرئيسية",
+    "Social Responsibility":"المسؤولية الاجتماعية",
+    "Quality System":"نظام الجودة",
+    "Factory Departments":"أقسام المصنع",
+    "Our Team":"فريق العمل",
+    "Careers":"الوظائف",
+    "Success Partners":"شركاء النجاح",
+    "Growth that gives back.":"نموٌّ يعود بالنفع.",
+    "The Printopack standard.":"معيار برينتوباك.",
+    "From cylinder to carton.":"من الأسطوانة إلى الكرتون.",
+    "The people behind the print.":"الأيدي التي خلف الطباعة.",
+    "Do your best work in print.":"قدّم أفضل ما لديك في عالم الطباعة.",
+    "Trusted by brands across 26+ markets.":"محل ثقة العلامات التجارية في أكثر من ٢٦ سوقًا.",
+    "Responsibility":"المسؤولية",
+    "The Factory":"المصنع",
+    "Partners":"الشركاء",
+    "Environment":"البيئة",
+    "Local Community":"المجتمع المحلي",
+    "International Community":"المجتمع الدولي",
+    "A cleaner way to print":"طباعة أنظف للبيئة",
+    "Invested in Saudi talent":"استثمار في الكفاءات السعودية",
+    "Trade the world can trust":"تجارة يثق بها العالم",
+    "Certifications":"الشهادات",
+    "Certified, audited, repeatable":"أنظمة معتمدة ومدقّقة وقابلة للتكرار",
+    "Quality Assurance":"ضمان الجودة",
+    "Assured at every stage":"جودة مضمونة في كل مرحلة",
+    "Laboratory & Testing":"المختبر والفحص",
+    "Tested before trusted":"نفحص قبل أن نَعِد",
+    "Continuous Improvement":"التحسين المستمر",
+    "Never done improving":"تحسينٌ لا يتوقف",
+    "Production":"الإنتاج",
+    "Cylinder Engraving":"حفر الأسطوانات",
+    "Rotogravure Printing":"طباعة الروتوغرافيور",
+    "Lamination & Coating":"التصفيح والطلاء",
+    "Slitting & Converting":"التقطيع والتحويل",
+    "Bag & Pouch Making":"تصنيع الأكياس والعبوات",
+    "Warehousing & Dispatch":"المستودعات والشحن",
+    "Leadership":"الإدارة",
+    "Management":"فريق الإدارة",
+    "General Manager":"المدير العام",
+    "IT Specialist":"أخصائي تقنية المعلومات",
+    "Team members":"موظفًا",
+    "Combined years of experience":"مجموع سنوات الخبرة",
+    "Average years per person":"متوسط سنوات الخبرة",
+    "Apply":"قدّم الآن",
+    "Our Clients":"عملاؤنا",
+    "The brands we print for":"العلامات التي نطبع لها",
+    "Where we work":"أين نعمل",
+    "Markets & offices":"الأسواق والمكاتب",
+    "Partner brands":"علامة شريكة",
+    "Countries served":"دولة نخدمها",
+    "Regional offices":"مكاتب إقليمية",
+    "Years in the market":"عامًا في السوق",
+    "Head Office":"المكتب الرئيسي",
+    "Regional Office":"مكتب إقليمي",
+    "Export":"تصدير",
+    "One code. All of Printopack.":"رمز واحد لكل برينتوباك.",
+    "Scan to open the site, our catalogue and contact details on any device.":"امسح الرمز لفتح الموقع والكتالوج وبيانات التواصل على أي جهاز.",
+    "Services":"خدماتنا",
+    "Social responsibility":"المسؤولية الاجتماعية",
+    "Quality system":"نظام الجودة",
+    "About Printopack":"عن برينتوباك",
     "Solutions":"الحلول",
     "Company":"الشركة",
     "Capabilities":"قدراتنا",
@@ -204,16 +271,29 @@
 
   /* ---------- Set initial hidden states (only when GSAP is present) ---------- */
   if(hasGSAP){
-    gsap.set('[data-media]', {clipPath:'inset(0% 0% 100% 0%)'});
-    gsap.set('.hero-media .media-inner, .marquee-media .media-inner, .custom-media .media-inner, .sol-bg .media-inner', {scale:1.12});
-    document.querySelectorAll('[data-split]').forEach(function(el){ gsap.set(el._words, {yPercent:100}); });
-    gsap.set('[data-rise]', {y:24, autoAlpha:0, scale:0.99, transformOrigin:'50% 60%'});
-    gsap.set('.sol-divider', {scaleX:0});
+    if(CALM){
+      // still mode: only a light one-time fade on cards/blocks — nothing else hides
+      gsap.set('[data-rise]', {y:14, autoAlpha:0});
+    } else {
+      gsap.set('[data-media]', {clipPath:'inset(0% 0% 100% 0%)'});
+      gsap.set('.hero-media .media-inner, .marquee-media .media-inner, .custom-media .media-inner, .sol-bg .media-inner', {scale:1.12});
+      document.querySelectorAll('[data-split]').forEach(function(el){ gsap.set(el._words, {yPercent:100}); });
+      gsap.set('[data-rise]', {y:24, autoAlpha:0, scale:0.99, transformOrigin:'50% 60%'});
+      gsap.set('.sol-divider', {scaleX:0});
+    }
   }
 
   /* ---------- Reusable reveal timeline for a section ---------- */
   function revealSection(section){
     var tl = gsap.timeline();
+    if(CALM){
+      var rl = section.querySelectorAll('[data-rise]');
+      if(rl.length) tl.to(rl, {y:0, autoAlpha:1, duration:0.5, stagger:0.05, ease:'power2.out'});
+      section.querySelectorAll('.draw-line').forEach(function(el, i){
+        setTimeout(function(){ el.classList.add('lined'); }, 250 + i*110);
+      });
+      return tl;
+    }
     var media = section.querySelectorAll('[data-media]');
     media.forEach(function(m,i){
       tl.to(m, {clipPath:'inset(0% 0% 0% 0%)', duration:0.55, ease:'power3.inOut'}, i*0.04);
@@ -258,9 +338,10 @@
   }
   // swap a marquee's content (live hydration) and rebuild its loop
   window.__refreshMarquee = function(marqueeEl, html){
-    if(!marqueeEl || !hasGSAP) return;
+    if(!marqueeEl) return;
     var inner = marqueeEl.querySelector('.marquee-inner');
     if(!inner) return;
+    if(CALM || !hasGSAP){ inner.innerHTML = html; return; }   // static row — no loop to rebuild
     for(var i = marquees.length - 1; i >= 0; i--){
       if(marquees[i].inner === inner){
         if(marquees[i].tween) marquees[i].tween.kill();
@@ -451,7 +532,7 @@
     } else { if(dot) dot.style.display='none'; if(ring) ring.style.display='none'; }
 
     // Magnetic CTAs: pull toward the cursor, elastic spring back
-    if(fine && hasGSAP){
+    if(fine && hasGSAP && !CALM){
       document.querySelectorAll('.btn').forEach(function(btn){
         btn.addEventListener('mousemove', function(e){
           var r = btn.getBoundingClientRect();
@@ -502,7 +583,7 @@
 
       // Footer wordmark: letters rise from masks, then drift on scroll
       var mark = document.querySelector('.footer-mark div');
-      if(mark){
+      if(mark && !CALM){
         var text = mark.textContent; mark.textContent = '';
         var inners = [];
         text.split('').forEach(function(chr){
@@ -518,7 +599,7 @@
 
       // 3D model idle float: gentle bob so it feels alive before any scroll
       var mv = document.getElementById('heroModel');
-      if(mv && !REDUCED){ gsap.to(mv, {y:14, duration:3.4, yoyo:true, repeat:-1, ease:'sine.inOut'}); }
+      if(mv && !REDUCED && !CALM){ gsap.to(mv, {y:14, duration:3.4, yoyo:true, repeat:-1, ease:'sine.inOut'}); }
     }
   }
 
@@ -562,7 +643,7 @@
     initModelFallback();
     initLuxury();
     if(hasGSAP){
-      if(!REDUCED) document.querySelectorAll('[data-marquee]').forEach(buildMarquee);
+      if(!REDUCED && !CALM) document.querySelectorAll('[data-marquee]').forEach(buildMarquee);
 
       // Per-section reveals on scroll (hero plays after preloader)
       document.querySelectorAll('[data-reveal]').forEach(function(section){
@@ -575,19 +656,21 @@
         });
       });
 
-      // Hero headline drifts up slower than the scroll and softens away
-      gsap.to('.hero h1', {y:90, autoAlpha:0.15, ease:'none',
-        scrollTrigger:{trigger:'.hero-stage', start:'top 65%', end:'bottom 15%', scrub:true}});
+      if(!CALM){
+        // Hero headline drifts up slower than the scroll and softens away
+        gsap.to('.hero h1', {y:90, autoAlpha:0.15, ease:'none',
+          scrollTrigger:{trigger:'.hero-stage', start:'top 65%', end:'bottom 15%', scrub:true}});
 
-      // Parallax drift
-      document.querySelectorAll('[data-parallax]').forEach(function(el){
-        var amt = parseFloat(el.getAttribute('data-parallax')) || 0.1;
-        gsap.to(el, {
-          yPercent: -amt*100,
-          ease:'none',
-          scrollTrigger:{trigger:el.closest('.media')||el, start:'top bottom', end:'bottom top', scrub:true}
+        // Parallax drift
+        document.querySelectorAll('[data-parallax]').forEach(function(el){
+          var amt = parseFloat(el.getAttribute('data-parallax')) || 0.1;
+          gsap.to(el, {
+            yPercent: -amt*100,
+            ease:'none',
+            scrollTrigger:{trigger:el.closest('.media')||el, start:'top bottom', end:'bottom top', scrub:true}
+          });
         });
-      });
+      }
 
       // ---- Cinematic camera system for the hero 3D model ----
       // One lerped camera state blends four inputs so every move melts together:
@@ -596,7 +679,7 @@
       //  3. inertia: fast scrolling kicks extra rotation that eases back out
       //  4. entrance: camera starts pulled back + rotated, glides into place on load
       var mv = document.getElementById('heroModel');
-      if(mv){
+      if(mv && !CALM){
         var cam    = {yaw:-60, pitch:78, r:115};   // current (lerped every frame)
         var prog = 0, mx = 0, my = 0, kick = 0;
 
@@ -791,8 +874,8 @@
       }
     }
 
-    /* ---- Lenis smooth scroll, synced to GSAP ---- */
-    if(window.Lenis){
+    /* ---- Lenis smooth scroll, synced to GSAP (native scroll in calm mode) ---- */
+    if(window.Lenis && !CALM){
       var lenis = new Lenis({duration:1.2, easing:function(t){return Math.min(1,1.001-Math.pow(2,-10*t));}, smoothWheel:true});
       window.__lenis = lenis;
       if(window.__introPending){ lenis.stop(); window.__introLenis = lenis; }   // scroll is frozen until the intro releases
@@ -834,6 +917,23 @@
     var label = document.getElementById('preLabel');
     if(!pre){ playHero(); return; }               // inner pages ship without a preloader
     if(!hasGSAP){ pre.style.display='none'; playHero(); boot(); return; }
+
+    if(CALM){
+      // dignified, brief: mark settles, page fades in — no theatrics
+      gsap.set(icon, {scale:1});
+      gsap.set(label, {y:0, autoAlpha:1});
+      var ctl = gsap.timeline({onComplete:function(){ pre.style.display='none'; }});
+      ctl.to({}, {duration:0.45})
+         .add(playHero)
+         .to(pre, {autoAlpha:0, duration:0.5, ease:'power2.out'});
+      setTimeout(function(){
+        if(pre && getComputedStyle(pre).display !== 'none' && ctl.progress() < 1){
+          pre.style.display = 'none';
+          forceRevealAll();
+        }
+      }, 3000);
+      return;
+    }
 
     var tl = gsap.timeline({onComplete:function(){ pre.style.display='none'; }});
     gsap.set(icon, {scale:0, transformOrigin:'bottom'});

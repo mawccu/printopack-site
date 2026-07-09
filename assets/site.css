@@ -919,3 +919,67 @@ html.menu-open .nav-account{visibility:hidden;}
   .hero{padding:92px 0 48px;}
   .stats-grid .stat-num{font-size:38px;}
 }
+
+/* ==================================================================
+   CALM MODE — client direction (Jul 2026): still, luxurious, colorful.
+   html.calm is set by site.js before first paint. Every infinite /
+   ambient animation is silenced; hover and press feedback remains.
+   ================================================================== */
+html.calm{scroll-behavior:smooth;}
+html.calm .hero-glow{animation:none;opacity:.7;}
+html.calm .hero-media .slot img{animation:none;}
+html.calm .scroll-cue i::after{animation:none;transform:translateY(60%);}
+html.calm .dot{animation:none;}
+html.calm .marquee-inner span:nth-child(even) .dot{animation:none;}
+html.calm .gnode::before{animation:none;transform:scale(1.15);opacity:.35;}
+html.calm .hero-waves{display:none;}
+/* marquees become composed static rows — no crawl */
+html.calm .marquee{white-space:normal;overflow:visible;}
+html.calm .marquee-inner{display:flex;flex-wrap:wrap;justify-content:center;row-gap:16px;column-gap:8px;}
+html.calm .clients .marquee-inner{row-gap:26px;column-gap:34px;}
+
+/* ==================================================================
+   STILL-LUXURY LAYER — editorial hairlines + confident numbers.
+   Stat band: a hairline-framed row of large light figures, the
+   quiet-money way to say 29 years / 26 countries / 400 people.
+   ================================================================== */
+.stat-band{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));
+  border-top:1px solid rgba(29,29,27,0.14);border-bottom:1px solid rgba(29,29,27,0.14);
+}
+.stat-tile{
+  padding:44px 26px 40px;text-align:center;position:relative;
+  border-inline-start:1px solid rgba(29,29,27,0.10);
+}
+.stat-tile:first-child{border-inline-start:none;}
+.stat-tile .num{
+  display:block;font-weight:200;font-size:clamp(40px,4.6vw,64px);line-height:1;
+  color:var(--blue);letter-spacing:-0.01em;
+}
+.stat-tile .num em{font-style:normal;color:var(--amber-deep,#e8940f);font-weight:300;}
+.stat-tile .lbl{
+  display:block;margin-top:14px;font-size:11px;font-weight:700;
+  letter-spacing:0.26em;text-transform:uppercase;color:rgba(29,29,27,0.55);
+}
+.stat-tile::after{
+  content:"";position:absolute;left:50%;top:0;transform:translateX(-50%) scaleX(0);
+  width:56px;height:2px;background:var(--amber,#ffae2a);transition:transform .5s var(--ease);
+}
+.stat-tile:hover::after{transform:translateX(-50%) scaleX(1);}
+[dir="rtl"] .stat-tile{border-inline-start:1px solid rgba(29,29,27,0.10);}
+@media(max-width:700px){
+  .stat-tile{padding:30px 14px 26px;}
+  .stat-tile:nth-child(odd){border-inline-start:none;}
+}
+
+/* Unified QR — one code for the whole Printopack world */
+.qr-block{display:flex;align-items:center;gap:22px;}
+.qr-block img{
+  width:112px;height:112px;border-radius:12px;background:#fff;padding:8px;
+  border:1px solid rgba(255,255,255,0.22);
+}
+.qr-block .qr-copy h4{font-size:15px;font-weight:600;margin-bottom:6px;}
+.qr-block .qr-copy p{font-size:13px;line-height:1.65;opacity:.72;max-width:30ch;}
+@media(max-width:480px){.qr-block{flex-direction:column;align-items:flex-start;}}
+footer .qr-block{margin:38px 0 6px;}
+footer .qr-block .qr-copy{color:inherit;}
